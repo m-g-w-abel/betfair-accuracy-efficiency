@@ -1,0 +1,293 @@
+%T Designing Markets for Prediction
+%V 31
+%N 4
+%P 42-52
+%X We survey the literature on prediction mechanisms, including prediction markets and peer prediction systems. We pay particular attention to the design process, highlighting the objectives and properties that are important in the design of good prediction mechanisms.
+%J AI Magazine
+%A Chen, Yiling
+%A Pennock, David M.
+%D 12/2010
+
+%T Algorithmic game theory
+%C New York
+%I Cambridge university press
+%D 2007
+
+%T Prices of State-Contingent Claims Implicit in Option Prices
+%V 51
+%N 4
+%I University of Chicago Press
+%P 621-651
+%X This paper implements the time-state preference model in a multi-period economy, deriving the prices of primitive securities from the prices of call options on aggregate consumption. These prices permit an equilibrium valuation of assets with uncertain payoffs at many future dates. Furthermore, for any given portfolio, the price of a $1.00 claim received at a future date, if the portfolio's value is between two given levels at that time, is derived explicitly from a second partial derivative of its call-option pricing function. An intertemporal capital asset pricing model is derived for payoffs that are jointly lognormally distributed with aggregate consumption. It is shown that using the Black-Scholes equation for options on aggregate consumption implies that individuals' preferences aggregate to isoelastic utility.
+%J The Journal of Business
+%A Breeden, Douglas T.
+%A Litzenberger, Robert H.
+%D 1978
+
+%T Decision costs and betting market efficiency
+%V 12
+%N 4
+%I SAGE Publications Ltd
+%P 477-492
+%X In this research we examine empirically the linkage between decision costs and market efficiency in the context of racetrack betting markets. We analyze more than 10,000 horse races and demonstrate that metrics of non-optimizing behavior are inversely related to the volume of betting: we are less likely to observe evidence of non-optimizing behavior when examining data from racetracks with larger betting pools. The analysis provides empirical support for the decision-cost model in which departures from the predictions of rational economic behavior are explained in terms of the cost of non-optimizing decisions. The decision-cost model reconciles the disparate findings on the efficiency of racetrack betting markets reported in previous research.
+%J Rationality And Society
+%A Busche, Kelly
+%A Walls, W. David
+%D 2000-11-01
+
+%T Efficiency in horse race betting markets: the role of professional tipsters
+%I Elsevier
+%P 341-354
+%X We use a dataset of more than 11,000 horse racing forecasts from 35 professional tipsters and investigate whether they make excessively original forec…
+%A Bruno, Deschamps
+%A Olivier, Gergaud
+%D 2008-01-01
+
+%T Ornstein-uhlenbeck process for horse race betting: a micro-macro analysis of herding and informed bettors
+%X We model the time evolution of single win odds in Japanese horse racing as a stochastic process, deriving an Ornstein--Uhlenbeck process by analyzing the probability dynamics of vote shares and the empirical time series of odds movements. Our framework incorporates two types of bettors: herders, who adjust their bets based on current odds, and fundamentalists, who wager based on a horse's true winning probability. Using data from 3450 Japan Racing Association races in 2008, we identify a microscopic probability rule governing individual bets and a mean-reverting macroscopic pattern in odds convergence. This structure parallels financial markets, where traders' decisions are influenced by market fluctuations, and the interplay between herding and fundamentalist strategies shapes price dynamics. These results highlight the broader applicability of our approach to non-equilibrium financial and betting markets, where mean-reverting dynamics emerge from simple behavioral interactions.
+%A Sugawara, Tomoya
+%A Mori, Shintaro
+%D 2025-05-21
+%K Physics - Physics and Society
+%K Quantitative Finance - Statistical Finance
+
+%T Order statistics of horse racing and the randomly broken stick
+%X We find a remarkable agreement between the statistics of a randomly divided interval and the observed statistical patterns and distributions found in horse racing betting markets. We compare the distribution of implied winning odds, the average true winning probabilities, the implied odds conditional on a win, and the average implied odds of the winning horse with the corresponding quantities from the "randomly broken stick problem". We observe that the market is at least to some degree informationally efficient. From the mapping between exponential random variables and the statistics of the random division we conclude that horses' true winning abilities are exponentially distributed.
+%A Bebbington, Peter A.
+%A Bonart, Julius
+%D 2016-12-08
+%K Quantitative Finance - Statistical Finance
+
+%T Odds adjustments by American horse-race bettors
+%V 62
+%N 2
+%I University of Illinois Press
+%P 290-294
+%J American Journal of Psychology
+%A Griffith, R. M.
+%D 1949
+
+%T Probability and utility estimates for racetrack bettors
+%V 85
+%N 4
+%I University of Chicago Press
+%P 803-815
+%X Subjective and estimated objective winning probabilities are obtained from 20,247 harness horse races. It is shown that subjectively a horse with a low winning probability is exaggerated and one with a high probability of winning is depressed. Various hypotheses characterizing the bettors' behavior to explain the observed subjective-objective probability relation are explored. Under some simplified assumptions, a utility of wealth function of a decision maker is derived, and a quantitative summary measure of his risk attitude is defined. Attitude toward risk of a representative bettor is examined. It is found that he is a risk lover and tends to take more risk as his capital dwindles.
+%J Journal of Political Economy
+%A Ali, Mukhtar M.
+%D 1977
+
+%T Bettors love skewness, not risk, at the horse track
+%V 106
+%N 1
+%I The University of Chicago Press
+%P 205-225
+%X Studies of horse race betting have empirically established a long shot anomaly; that is, low&#8208;probabiliy, high&#8208;variance bets (long shots) provide low mean returns and high&#8208;probability, lowvariance bets provide relatively high mean returns. Because bettors willingly accept low&#8208;return, high&#8208;variance bets, researchers conclude that bettors are risk lovers. In this study, we show that the data are at least as consistent with risk aversion as they are with risk loving when one explicitly considers the skewness of bet returns. Because the variance and skewness of bet returns are highly correlated, bettors may appear to prefer variance when it is skewness that they crave.
+%J Journal of Political Economy
+%A Golec, Joseph
+%A Tamarkin, Maurry
+%D 1998
+
+%T Explaining the favorite–long shot bias: is it risk-love or misperceptions?
+%V 118
+%N 4
+%I The University of Chicago Press
+%P 723-746
+%X The favorite–long shot bias describes the long-standing empirical regularity that betting odds provide biased estimates of the probability of a horse winning: long shots are overbet whereas favorites are underbet. Neoclassical explanations of this phenomenon focus on rational gamblers who overbet long shots because of risk-love. The competing behavioral explanations emphasize the role of misperceptions of probabilities. We provide novel empirical tests that can discriminate between these competing theories by assessing whether the models that explain gamblers’ choices in one part of their choice set (betting to win) can also rationalize decisions over a wider choice set, including compound bets in the exacta, quinella, or trifecta pools. Using a new, large-scale data set ideally suited to implement these tests, we find evidence in favor of the view that misperceptions of probability drive the favorite–long shot bias, as suggested by prospect theory.
+%J Journal of Political Economy
+%A Snowberg, Erik
+%A Wolfers, Justin
+%D 2010
+
+%T Adjusting bookmaker’s odds to allow for overround
+%V 5
+%N 6
+%I Science Publishing Group
+%P 45-49
+%X Several methods have been proposed to adjust bookmakers’ implied probabilities, including an additive model, a normalization model, and an iterative method proposed by Shin. These approaches have one or more defects: the additive model can give negative adjusted probabilities, normalization does not account for favorite long-shot bias, and both the normalization and Shin approaches can produce bookmaker probabilities greater than 1 when applied in reverse. Moreover, it is shown that the Shin and additive methods are equivalent for races with two competitors. Vovk and Zhadanov (2009) and Clarke (2016) suggested a power method, where the implied probabilities are raised to a fixed power, which never produces bookmaker or fair probabilities outside the 0-1 range and allows for the favorite long-shot bias. This paper describes and applies the methods to three large bookmaker datasets, each in a different sport, and shows that the power method universally outperforms the multiplicative method and outperforms or is comparable to the Shin method.
+%J American Journal of Sports Science
+%A Clarke, Stephen
+%A Kovalchik, Stephanie
+%A Ingram, Martin
+%D 2017-12
+
+%T On determining probability forecasts from betting odds
+%V 30
+%N 4
+%P 934-943
+%X We show that the probabilities determined from betting odds using Shin’s model are more accurate forecasts than those determined using basic normalization or regression models. We also provide empirical evidence that some bookmakers are significantly different sources of probabilities in terms of forecasting accuracy, and that betting exchange odds are not always the best source, especially in smaller markets. The advantage of using Shin probabilities and the differences between bookmakers decrease with an increasing market size.
+%J International Journal of Forecasting
+%A Štrumbelj, Erik
+%D 2014-10-01
+%K Betfair
+%K Betting exchange
+%K Calibration
+%K Fixed-odds
+%K Probability forecasting
+%K Shin’s model
+%K Sports forecasting
+
+%T A family of solutions related to shin’s model for probability forecasts
+%V 21
+%N 2
+%I De Gruyter
+%P 153-158
+%X This work develops a family of solutions related to Shin’s model in producing accurate probability forecasts. More precisely, closed-form solutions are derived based on an analytical approach to known solutions and evaluated experimentally for sports betting data sets.
+%J Journal of Quantitative Analysis in Sports
+%A Kizildemir, Melis
+%A Akin, Ertugrul
+%A Alkan, Altug
+%D 2025-06-01
+%K Shin’s model
+%K probability forecasting
+%K sports forecasting
+
+%T Cross-entropy loss functions: theoretical analysis and applications
+%X Cross-entropy is a widely used loss function in applications. It coincides with the logistic loss applied to the outputs of a neural network, when the softmax is used. But, what guarantees can we rely on when using cross-entropy as a surrogate loss? We present a theoretical analysis of a broad family of loss functions, comp-sum losses, that includes cross-entropy (or logistic loss), generalized cross-entropy, the mean absolute error and other cross-entropy-like loss functions. We give the first $H$-consistency bounds for these loss functions. These are non-asymptotic guarantees that upper bound the zero-one loss estimation error in terms of the estimation error of a surrogate loss, for the specific hypothesis set $H$ used. We further show that our bounds are tight. These bounds depend on quantities called minimizability gaps. To make them more explicit, we give a specific analysis of these gaps for comp-sum losses. We also introduce a new family of loss functions, smooth adversarial comp-sum losses, that are derived from their comp-sum counterparts by adding in a related smooth term. We show that these loss functions are beneficial in the adversarial setting by proving that they admit $H$-consistency bounds. This leads to new adversarial robustness algorithms that consist of minimizing a regularized smooth adversarial comp-sum loss. While our main purpose is a theoretical analysis, we also present an extensive empirical analysis comparing comp-sum losses. We further report the results of a series of experiments demonstrating that our adversarial robustness algorithms outperform the current state-of-the-art, while also achieving a superior non-adversarial accuracy.
+%A Mao, Anqi
+%A Mohri, Mehryar
+%A Zhong, Yutao
+%D 2023-06-20
+%K Computer Science - Machine Learning
+%K Statistics - Machine Learning
+
+%T Use of ranks in one-criterion variance analysis
+%V 47
+%N 260
+%I Taylor & Francis
+%P 583-621
+%X Given C samples, with n i observations in the ith sample, a test of the hypothesis that the samples are from the same population may be made by ranking the observations from from 1 to &#931;n i (giving each observation in a group of ties the mean of the ranks tied for), finding the C sums of ranks, and computing a statistic H. Under the stated hypothesis, H is distributed approximately as &#967;2(C – 1), unless the samples are too small, in which case special approximations or exact tables are provided. One of the most important applications of the test is in detecting differences among the population means.* * Based in part on research supported by the Office of Naval Research at the Statistical Research Center, University of Chicago. * Based in part on research supported by the Office of Naval Research at the Statistical Research Center, University of Chicago.
+%J Journal of the American Statistical Association
+%A Kruskal, William H.
+%A Wallis, W. Allen
+%D 1952-12-01
+
+%T Efficiency and profitability in exotic bets
+%V 54
+%N 215
+%I Wiley-Blackwell
+%P 289-298
+%X The efficiency and profitability of exotic racetrack bets such as exactas and daily doubles are examined. Efficiency is understood to mean that above average returns cannot be made in the long run once risk is appropriately controlled for. The markets in question are found not to be efficient; the inefficiencies, however, are insufficient to permit simple strategies to show a consistent profit. Some evidence of "smart money" exists in that holders of inside information may bet on exactas rather than equivalent standard bets in order to avoid signalling their actions to the betting public.
+%J Economica
+%A Asch, Peter
+%A Quandt, Richard E.
+%D 1987-08-01
+%K Break-even analysis
+%K Business forecasting
+%K Financial crises
+%K Financial performance
+%K Gambling
+%K Other Gambling Industries
+%K Profitability
+
+%T On utility function estimation of racetrack bettors
+%V 13
+%N 3
+%P 491-498
+%X Racetrack betting makes possible the empirical study of people's behavior in decision making under uncertainty and risk in laboratory-like but still natural conditions. Hence, it gives an opportunity to empirically test the classical assumptions of rational behavior. In this paper it is found that empirical data from a Finnish racetrack do not support risk-aversion or risk-neutrality of bettors. This gives rise to the question of under exactly which cultural and other circumstances various assumptions regarding attitudes toward risk actually apply.
+%J Journal of Economic Psychology
+%A Kanto, Antti J.
+%A Rosenqvist, Gunnar
+%A Suvas, Arto
+%D 1992-09-01
+
+%T Utility analysis and group behavior: an empirical study
+%V 73
+%N 1
+%I University of Chicago Press
+%P 18-26
+%J Journal of Political Economy
+%A Weitzman, Martin
+%D 1965
+
+%T Transactions costs, extent of inefficiencies, entries and multiple wagers in a racetrack betting model
+%V 31
+%N 4
+%C Linthicum, United States
+%I Institute for Operations Research and the Management Sciences
+%P 381–394
+%X In a previous paper (Management Science, December 1981) Hausch, Ziemba and Rubinstein (HZR) developed a system that demonstrated the existence of a weak market inefficiency is racetrack place and show betting pools. The system appeared to make possible substantial positive profits. To make the system operational, given the limited time available for placing bets, an approximate regression scheme was developed for the Exhibition Park Racetrack in Vancouver for initial betting wealth between $2500 and $7500 and a track take of 17.1%. This paper: (1) extends this scheme to virtually any track and initial wealth level; (2) develops a modified system for multiple horse entries; (3) allows for multiple bets; (4) analyzes the effects of the track take and breakage on profits; (5) presents recent results using this system; and (6) considers the extent of the inefficiency, i.e., how much can be bet before the market becomes efficient?
+%J Management Science (pre-1986)
+%A Hausch, Donald B.
+%A Ziemba, William T.
+%D 1985-04
+%K Gambling
+%K Bias
+%K Efficiency
+%K Efficient markets
+%K Growth models
+%K Horses
+%K Probability
+%K Racetracks
+
+%T Efficiency of the market for racetrack betting
+%V 27
+%N 12
+%C Linthicum, United States
+%I Institute for Operations Research and the Management Sciences
+%P 1435
+%X Many racetrack bettors have systems. Since the track is a market similar in many ways to the stock market one would expect that the basic strategies would be either fundamental or technical in nature. Fundamental strategies utilize past data available from racing forms, special sources, etc. to "handicap" races. The investor then wagers on one or more horses whose probability of winning exceeds that determined by the odds by an amount sufficient to overcome the track take. Technical systems require less information and only utilize current betting data. They attempt to find inefficiencies in the "market" and bet on such "overlays" when they have positive expected value. Previous studies and our data confirm that for win bets these inefficiencies, which exist for underbet favorites and overbet longshots, are not sufficiently great to result in positive profits. This paper describes a technical system for place and show betting for which it appears to be possible to make substantial positive profits and thus to demonstrate market inefficiency in a weak form sense. Estimated theoretical probabilities of all possible finishes are compared with the actual amounts bet to determine profitable betting situations. Since the amount bet influences the odds and theory suggests that to maximize long run growth a logarithmic utility function is appropriate the resulting model is a nonlinear program. Side calculations generally reduce the number of possible bets in any one race to three or less hence the actual optimization is quite simple. The system was tested on data from Santa Anita and Exhibition Park using exact and approximate solutions (that make the system operational at the track given the limited time available for placing bets) and found to produce substantial positive profits. A model is developed to demonstrate that the profits are not due to chance but rather to proper identification of market inefficiencies.
+
+Many racetrack bettors have systems. Since the track is a market similar in many ways to the stock market one would expect that the basic strategies would be either fundamental or technical in nature. Fundamental strategies utilize past data available from racing forms, special sources, etc. to "handicap" races. The investor then wagers on one or more horses whose probability of winning exceeds that determined by the odds by an amount sufficient to overcome the track take. Technical systems require less information and only utilize current betting data. They attempt to find inefficiencies in the "market" and bet on such "overlays" when they have positive expected value. Previous studies and our data confirm that for win bets these inefficiencies, which exist for underbet favorites and overbet longshots, are not sufficiently great to result in positive profits. This paper describes a technical system for place and show betting for which it appears to be possible to make substantial positive profits and thus to demonstrate market inefficiency in a weak form sense. Estimated theoretical probabilities of all possible finishes are compared with the actual amounts bet to determine profitable betting situations. Since the amount bet influences the odds and theory suggests that to maximize long run growth a logarithmic utility function is appropriate the resulting model is a nonlinear program. Side calculations generally reduce the number of possible bets in any one race to three or less hence the actual optimization is quite simple. The system was tested on data from Santa Anita and Exhibition Park using exact and approximate solutions (that make the system operational at the track given the limited time available for placing bets) and found to produce substantial positive profits. A model is developed to demonstrate that the profits are not due to chance but rather to proper identification of market inefficiencies.
+%J Management Science (pre-1986)
+%A Hausch, Donald B.
+%A Ziemba, William T.
+%A Rubinstein, Mark
+%D 1981-12
+%K Prices
+%K Securities markets
+%K Gambling
+%K Efficiency
+%K Horses
+%K Racetracks
+%K Costs
+%K Expected values
+%K Investments
+%K Investors
+%K Profits
+%K Stock exchanges
+
+%T A note on the hayek hypothesis and the favorite-longshot bias in parimutuel betting
+%V 85
+%N 4
+%C Nashville, United States
+%I American Economic Association
+%P 949-955
+%X The Hayek hypothesis (Vernon L. Smith, 1982) suggests that markets can work efficiently even when participants have a limited knowledge of the environment or of other participants. An examination is made of the so-called favorite-longshot bias in pari-mutuel betting (favorites win more often than the betting odds indicate, and longshots win less often than the betting odds indicate). It is suggested that the bias can be explained with an argument that turns on information and transactions costs (the track "take" is 15%-20% of win pools at most racetracks). A model is presented of win-pool pari-mutuel betting which posits 2 types of risk-neutral bettors: informed handicappers and uninformed handicappers. The results suggest that the favorite-longshot bias cannot be explained with an argument that appeals to information and transactions costs.
+%J American Economic Review
+%A Hurley, William
+%A McDonough, Lawrence
+%D 1995-09
+%K Studies
+%K Gambling
+%K Bias
+%K Efficient markets
+%K Horses
+%K Probability
+%K Debates
+%K Economic models
+%K Economic theory
+%K Horse racing
+%K Hypotheses
+%K Information
+%K Subjectivity
+%K Transactions
+
+%T Optimal horse race bets
+%V 60
+%N 5
+%I [Taylor & Francis, Ltd., Mathematical Association of America]
+%P 310-315
+%J American Mathematical Monthly
+%A Isaacs, Rufus
+%D 1953
+
+%T Horse racing: testing the efficient markets model
+%V 33
+%N 4
+%I [American Finance Association, Wiley]
+%P 1109-1118
+%J The Journal of Finance
+%A Snyder, Wayne W.
+%D 1978
+
