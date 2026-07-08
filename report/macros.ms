@@ -12,3 +12,15 @@ bracket-label " (" ")" "; "
 .de BP
 . IP \[bu]
 ..
+.de NHD
+. NH \\$2
+. XN \\$1
+..
+.de SHD
+. SH \\$2
+. XH 1 \\$1
+..
+.de GE
+. IP \fB\\$1\fP 1i
+\(em \\$2
+..
