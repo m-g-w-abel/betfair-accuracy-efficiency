@@ -1,1 +1,1 @@
-soelim $1 | groff -ms -R -Tpdf > "${1%%.*}.pdf"
+soelim $1 | groff -ms -e -R -Tpdf > "${1%%.*}.pdf"

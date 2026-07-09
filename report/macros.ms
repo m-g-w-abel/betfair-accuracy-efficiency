@@ -9,6 +9,9 @@ label "(A.n|Q) ', ' (D.y|D)"
 short-label "(D.y|D)"
 bracket-label " (" ")" "; "
 .R2
+.EQ
+delim $$
+.EN
 .de BP
 . IP \[bu]
 ..
