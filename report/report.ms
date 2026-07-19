@@ -23,6 +23,7 @@ results achieved and conclusion.
 .GE CLOB "Central Limit Order Book"
 .GE HKJC "Hong Kong Jockey Club"
 .GE IP "In-play (after the off)"
+.GE PNL "Profit and Loss"
 .GE PP "Pre-play (before the off)"
 .GE WAP "Weighted Average Price"
 .NHD Introduction
@@ -56,13 +57,41 @@ prediction market long run
 .]
 Horse racing markets are also fundamentally prediction
 markets, and have a long history of widespread use. As a
-prediction market, horse races provide good data since they
-are so regular and the approximate date and time is known
+prediction market, horse races provide good data since there
+are so many and the approximate date and time is known
 before hand. It is easier to determine their accuracy in
 this context as there are many repeated similar markets,
 unlike predictions for political events which can be very
 far apart.
-.NHD TEMP 2
+.PP
+Existing research into 
+.NHD "Motivation" 2
+.PP
+I was motivated to research this area due to the recent
+popularity of prediction markets as a tool for forecasting.
+As well as this, the regulation surrounding prediction
+markets is currently heavy within the UK. This is because
+they fall under the jurisdiction of the Gambling Commission.
+Many of the newly popular prediction market sites are
+currently illegal to use within the UK, but established
+exchanges such as Betfair are completely legal. Another
+interesting factor of being classed as gambling means that
+winnings within the UK are not taxed. This means that an
+equivalent strategy within a gambling market and the stock
+market may prove ultimately more profitable in the gambling
+market as the only fees to be paid are commission to the
+exchange. In the case of Betfair, commission can be even
+less than just 2% of successful bets.
+.NHD "Scope" 2
+.PP
+This project observes a variety of different
+classifications of horse races. Each classification type
+is examined to see if there is any link between the
+classification of a horse race and it's related betting
+market's accuracy and efficiency. In order to achieve this,
+a database of horse races is compiled using data from the
+Betfair exchange.
+.NHD "Aims" 2
 .PP
 The primary aim of this project is to determine which
 factors are most significant in influencing the accuracy and
@@ -100,10 +129,20 @@ In order to determine which groups of races are
 .I weak-form
 efficient, I shall apply various betting strategy profiles
 to them in isolation. Some of these strategies will simple and some will be adapted from previous work.
-.NHD "Motivation" 2
-.NHD "Scope" 2
-.NHD "Aims" 2
 .NHD "Objectives" 2
+.BP
+Perform a systematic review of existing research to
+determine existing standards for market accuracy and
+efficiency. Identify whether racing markets are generally
+considered to be accurate or efficient.
+.BP
+Obtain an appropriate dataset for research.
+.BP
+Categorise the data into potentially useful groupings.
+.BP
+Examine each grouping to determine whether or not they fit
+the previously identified definitions of accurate or
+efficient.
 .NHD "Background" 1
 .NHD "Bookmaking" 2
 .NHD "Fixed-Price Odds" 3
@@ -166,6 +205,16 @@ above the starting price.
 Betfair FAQ
 .]
 .NHD "Literature Review" 2 
+.NHD "Accuracy of Prediction Markets" 3
+.BP
+Favourite-longshot bias
+
+.NHD "Efficiency of Prediction Markets" 3
+.BP
+efficient market theory
+.BP
+
+.NHD "Strategies for Horse Race Betting" 3
 .NHD "Main Results"
 .NHD "Objectives, Specification & Design" 2
 .NHD "Methodology & Implementation" 2
@@ -275,9 +324,107 @@ I decided to use python through Jupyter Lab to write and run
 my software as it is what I had the most experience with for
 statistical analysis.
 .NHD "Data Structure and Statistics" 4
+.NHD "Pre-Processing" 5
 .PP
-
+I pre-processed my data to include some more fields that
+would be useful. Pre-processing fields like this means that
+the calculations do not need to be repeated later on.
+.PP
+The first field to be added was a normalised probability
+field. This is useful as the implied odds given by the
+starting price (almost) never sum to be one. The sum of
+implied odds given is known as the ``overround''. An
+overround greater than one for a back market shows that
+there is negative arbitrage and a weighted selection of back
+bets is guaranteed to lose money. Since the data for this
+project is using the BSP, it can trivially be shown that it
+is possible to arbitrage almost every single market. This is
+beacuse for BSP, both back bettors and lay bettors are given
+the same price. In real terms this arbitrage is actually
+impossible to achieve however, as the BSP is not possible to
+know before the off and by betting this way you are certain
+to move the market.
+.PP
+I then added fields for partial pre calculation of the Brier
+score and Log-Loss. This is particularly useful as it means
+that to determine the scores for a certain subset of races,
+they can simply be summated using the groups generated in
+the next section.
+.NHD "Categorisation" 5
+.PP
+Given the available data from my dataset I decided upon a
+list of ways to categorise the horse races: race number,
+distance, hour of day, pre-play trade volume, race type
+(handicap, hurdles, etc.), location, number of runners and,
+overround. To do this I produced a list containing these
+different classifications of races created using the
+.ft 6
+groupby
+.ft
+method in Pandas. The
+.ft 6
+groupby
+.ft
+method makes it easy to perform aggregate calculations per
+group created through the method. This means that a function
+such as
+.ft 6
+sum
+.ft
+will be ran per group, instead of for all data in the
+DataFrame.
 .NHD "Trading Strategies" 4
+.PP
+Trading strategies are implemented using a system in which
+the strategy function recieves a list of available runners
+to bet on and returns a ``bet slip''. The bet slip contains
+information about which race and runner it chose, as well as
+the amount bet and whether or not the selection won. The
+amount bet is able to be submitted as either an absolute
+value, or as a percentage of the currently held bank value.
+.PP
+The bet slips are passed to a function which actions the
+bets and determines the PNL for each one. It also sorts the
+bets over time to generate a timeline of events.
+.PP
+Each betting strategy is written using vector based
+functions. This allows the underlying library (Pandas or
+Numpy) to perform many operations in parallel. There are two
+primary benefits to this. Firstly, it significantly improves
+the readability of the code as the need for looping is
+removed. The code is much more representative of what is
+actually happening. Secondly, there is a major performance
+increase by writing the software in this way.
+.NHD "Naive Strategies" 5
+.PP
+The first naive strategy simply bets one unit of currency on
+the favourite (runner with the highest implied probability)
+in every race. Due to how I set up the strategy
+implementation, this is incredibly simple as it just
+involves grouping the runners per race and then submitting a
+bet of one. If the favourite horse is given odds lower than
+its real odds, then this strategy should consistently make
+money. Breaking even is an implication of the favourite
+being accurately priced over time.
+.PP
+The other naive strategy is similar to the first, but
+instead of betting a constant amount on each favourite, it
+attempts to ``hedge'' the bet by betting lower for worse
+odds and higher for better odds. If the prices for the
+favourite horse are accurate, then this strategy should
+consistently break even.
+.NHD "Learning Strategy" 5
+.PP
+I created a very simple learning strategy that uses a
+rolling average to estimate the current likelihood of the
+favourite horse winning. It assumes the current average of
+win rate of the favourite horse to be the true win rate and
+uses the Kelly Criterion to size a bet. This is a very
+simple strategy which does not use any information outside
+of the historical prices. If this strategy is able to make a
+profit, it indicates that the market is not
+.I weak-form
+efficient.
 .NHD "Results, Analysis & Evaluation" 2
 .NHD "Accuracy" 3
 .NHD "Efficiency" 3
