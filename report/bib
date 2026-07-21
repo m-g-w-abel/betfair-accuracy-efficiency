@@ -35,6 +35,7 @@
 %T Efficiency in horse race betting markets: the role of professional tipsters
 %I Elsevier
 %P 341-354
+%B Handbook of sports and lottery markets
 %A Bruno, Deschamps
 %A Olivier, Gergaud
 %D 2008-01-01
@@ -214,17 +215,17 @@
 %A Ziemba, William T.
 %A Rubinstein, Mark
 %D 1981-12
-%K Prices
-%K Securities markets
-%K Gambling
-%K Efficiency
-%K Horses
-%K Racetracks
 %K Costs
+%K Efficiency
 %K Expected values
+%K Gambling
+%K Horses
 %K Investments
 %K Investors
+%K Prices
 %K Profits
+%K Racetracks
+%K Securities markets
 %K Stock exchanges
 
 %T A note on the hayek hypothesis and the favorite-longshot bias in parimutuel betting
@@ -433,4 +434,49 @@
 %A Nosek, Brian A.
 %A Johannesson, Magnus
 %D 2015-12-15
+
+%T Are betting returns a useful measure of accuracy in (sports) forecasting?
+%V 36
+%N 2
+%P 713-722
+%J International Journal of Forecasting
+%A Wunderlich, Fabian
+%A Memmert, Daniel
+%D 2020-04-01
+%K Betting market
+%K Betting odds
+%K Betting returns
+%K Economic measures
+%K Error measures
+%K Market efficiency
+%K Profitability of forecasts
+%K Simulation
+%K Sports forecasting
+%K Statistical measures
+
+%T A new interpretation of information rate
+%V 35
+%N 4
+%P 917-926
+%J Bell System Technical Journal
+%A Kelly, J. L.
+%D 1956-07
+
+%T The kelly criterion in blackjack sports betting, and the stock market
+%V 1
+%I Elsevier
+%P 385-428
+%B Handbook of asset and liability management
+%A Thorp, Edward O.
+%D 2006
+
+%T An exception to the risk preference anomaly
+%V 61
+%N 3
+%I University of Chicago Press
+%P 337-346
+%J The Journal of Business
+%A Busche, Kelly
+%A Hall, Christopher D.
+%D 1988
 

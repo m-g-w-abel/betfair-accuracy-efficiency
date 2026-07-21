@@ -206,9 +206,77 @@ Betfair FAQ
 .]
 .NHD "Literature Review" 2 
 .NHD "Accuracy of Prediction Markets" 3
-.BP
-Favourite-longshot bias
-
+.NHD "Favourite-Longshot Bias" 4
+.PP
+The favourite longshot-bias has been demonstrated within
+racing markets as far back as 1949.
+.[
+Griffith 1949
+.]
+This is a phenomenom in which bettors tend to prefer to bet
+on outlier horses, as opposed to the safer options. In turn,
+this moves the odds given by the market as favourite horses
+are given worse implied odds and longshots are given better
+implied odds. Other than the long and short-odded horses,
+Griffith found that the odds for horses were on average
+accurate.
+.PP
+Some studies have attempted to determine why this is the
+case. Weitzman
+.[
+#
+Weitzman 1965
+.]
+used utility theory to derive a utility curve for one bettor
+and found it to be similar to the theoretical one proposed
+by Markowitz. To follow this study, Ali
+.[
+#
+Ali 1977
+.]
+observed over 20,000 races and found the favourite-longshot
+bias to be present. Ali creates a wealth utility function
+and determines that the average bettor values risk, thereby
+causing the discrepancy in prices.  Subsequent research has
+also conjectured that bettors have a preference for risk at
+the racetrack. Kanto et al
+.[. (
+#
+Kanto
+.])
+found this to be the case using a data sample from Finland.
+.PP
+Golec and Tamarkin
+.[
+#
+skewness not risk
+.]
+suggested an alternative explanation for the
+favourite-longshot bias. They claimed that it was possible
+that bettors could actually be risk-averse and instead have
+a preference for skewness. To back this up they examined
+popular betting strategies and determined that they were
+better aligned with a preference for skewness rather than
+risk. Another theory is put forward by Snowberg and Wolfers
+.[
+#
+snowberg wolfers 2010
+.]
+which states that the bias can be accounted for by the
+misperceptions of risk by the bettors.
+.PP
+The bias has also been shown to not be universal. In
+contrast to the evidence found in North American markets,
+Busche and Hall
+.[
+#
+Busche Hall
+.]
+found that bettors at the Hong Kong Jockey Club do not
+exhibit the same apparent risk-loving behaviour. They posit
+that the larger betting volume in Hong Kong may influence
+the bias.
+.NHD "Use of Markets for Forecasting" 4
 .NHD "Efficiency of Prediction Markets" 3
 .BP
 efficient market theory
@@ -419,9 +487,18 @@ I created a very simple learning strategy that uses a
 rolling average to estimate the current likelihood of the
 favourite horse winning. It assumes the current average of
 win rate of the favourite horse to be the true win rate and
-uses the Kelly Criterion to size a bet. This is a very
-simple strategy which does not use any information outside
-of the historical prices. If this strategy is able to make a
+uses the Kelly Criterion to size a bet. That is:
+$f* = ( bp - q ) / b$
+where $f*$ is the fraction of wealth to bet, $p$ is the
+likelihood of the bet winning, $q$ is $1-p$ and $b$ is the
+proportion of wealth won if successful.
+.[
+Thorp 2006
+.]
+It is worth noting that this does not account for the impact
+that a bet will have on the market.  This is a very simple
+strategy which does not use any information outside of the
+historical prices. If this strategy is able to make a
 profit, it indicates that the market is not
 .I weak-form
 efficient.
