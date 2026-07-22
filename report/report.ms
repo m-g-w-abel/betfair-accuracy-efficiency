@@ -20,7 +20,9 @@ results achieved and conclusion.
 .SH
 .SHD Nomenclature
 .GE BSP "Betfair Starting Price"
+.GE CDA "Continuous Double Auction"
 .GE CLOB "Central Limit Order Book"
+.GE DPM "Dynamic Pari-Mutuel Market"
 .GE HKJC "Hong Kong Jockey Club"
 .GE IP "In-play (after the off)"
 .GE PNL "Profit and Loss"
@@ -87,7 +89,7 @@ less than just 2% of successful bets.
 This project observes a variety of different
 classifications of horse races. Each classification type
 is examined to see if there is any link between the
-classification of a horse race and it's related betting
+classification of a horse race and its related betting
 market's accuracy and efficiency. In order to achieve this,
 a database of horse races is compiled using data from the
 Betfair exchange.
@@ -148,7 +150,7 @@ efficient.
 .NHD "Fixed-Price Odds" 3
 .PP
 A fixed-price bookmaker will quote prices (odds) at which
-they are willing to sell bets at. If the bet pays out, the
+they are willing to sell bets. If the bet pays out, the
 bettor receives the return originally quoted to them. The
 bettor is given a guarantee of their winnings before placing
 the bet. It is important to note that it is unlikely a
@@ -184,11 +186,11 @@ odds prices or offering a tote service, it allows users to
 form bets with one another. Betfair does this using a CLOB,
 allowing users to either back (long) a bet or lay (short)
 one. Within the context of a horse race, this means that the
-win market (where bets are payed out only if the horse
+win market (where bets are paid out only if the horse
 places first) features a different asset for every selection
 (runner) in the race. They can be thought of as largely
 analogous to options contracts, where the layer agrees to
-pay the backer a certain sum of money dependant on the
+pay the backer a certain sum of money dependent on the
 outcome of the race.
 .PP
 A unique feature of the Betfair racing market is its
@@ -277,11 +279,163 @@ exhibit the same apparent risk-loving behaviour. They posit
 that the larger betting volume in Hong Kong may influence
 the bias.
 .NHD "Use of Markets for Forecasting" 4
+.PP
+Existing research has shown prediction markets to provide
+accurate estimates of outcomes for elections over both long
+and short time frames.
+.[
+long term
+.]
+Much previous work focusses on election markets, where
+bettors are rewarded for correctly guessing the outcome of a
+political election. Rothschild
+.[
+#
+forecasting elections
+.]
+showed that, when used appropriately, prediction markets can
+perform significantly better than the very best polls.
+Another study found prediction markets to outperform a
+survey when used to predict the reproducibility of studies
+published in psychology journals.
+.[
+reproducibility
+.]
+.PP
+Because of the demonstrated favourite-longshot bias in
+sports betting, many studies attempt to convert odds given
+by bookmakers or markets into ``real'' probabilities.
+\[S ah]trumbelj
+.[
+#
+Erik determining forecast
+.]
+used Shin's
+.[
+#
+shin 1993
+.]
+model to create more accurate forecasts than those created
+by odds normalisation or regression. These methods are
+criticised by Clarke et al
+.[. (
+#
+Clarke adjusting 
+.])
+for potentially producing negative probabilities and in the
+case of normalisation, not accounting for the
+favourite-longshot bias. They share that an alternative
+power method instead performs as well as Shin's, or better.
+.PP
+The mechanisms by which markets produce accurate forecasts
+has also been studied. Strijbis and Arnesen
+.[
+#
+variance markets
+.]
+find that the the setup of the market influences accuracy
+the most, while features of the event and the market's
+participants have an insignificant impact. Prediction
+markets require the right incentives in order to produce the
+most accurate and up to date forecasts.
+.[
+designing markets prediction
+.]
+Markets will also suffer if a group of insiders are able to
+influence the outcome. If the goal of the market is to
+produce the best forecast, then it must incentivise
+immediate truth-telling instead of deception. Pennock
+.[
+#
+pennock 2004
+.]
+suggests an alternative ``dynamic pari-mutuel market'' (DPM)
+which functions similary to typical parimutuel betting. A
+DPM allows investors to buy and sell bets at a changing
+rate determined by the market, giving them an opportunity to
+hedge or sell their bets early.
+.NHD "Measurement of Forecast Accuracy" 4
+.PP
+One of the earliest methods for scoring the accuracy of a
+forecast is provided by Brier.
+.[
+#
+brier 1950
+.]
+The Brier score is determined as a result of many
+predictions using the mean squared difference between the
+estimated probability and the actual outcome. In this
+system, a perfect forecast is given a score of zero. This
+can only be achieved if the forecast guesses with 100%
+certainty every time. The Brier score can be shown to be
+equivalent to the Ranked Probability score (proposed by
+Epstein
+.[ (
+#
+epstein 1969
+.]))
+with only two categories.
+.[
+discrete brier weigel
+.]
+.PP
+Good
+.[
+#
+rational decisions
+.]
+developed a method for scoring estimates of probabilities
+now known as log-loss. This method has since become popular
+as a scoring mechanism for machine learning models as it
+highly punishes incorrect estimates. Machine learning
+textbooks indicate that this is the standard cost function
+in use.
+.[
+deep learning goodfellow
+.]
+.[
+murphy machine learning
+.]
+.PP
+Wunderlich and Memmert
+.[
+#
+wunderlich are betting
+.]
+demonstrated that the betting returns of a strategy are not
+necessarily indicative of accuracy in a forecasting model,
+despite demonstrating profitability.
 .NHD "Efficiency of Prediction Markets" 3
-.BP
-efficient market theory
-.BP
+.PP
+Fama
+.[
+#
+fama 1970
+.]
+set out three tests of efficiency for markets depending on
+how how rigourously they can be described as efficient. In a
+study of 1,730 races, Snyder
+.[
+#
+Snyder 1978
+.]
+showed that because of the favourite-longshot bias, prices
+were indeed more favourable for the favourite horses, but
+the track take was too significant for a strategy of
+favourite betting to be profitable. This indicates some
+level of
+.I "weak form"
+efficiency, however without the track take present (and
+betting habits remaining the same), it would be certainly
+impossible to describe the market as informationally
+efficient. Snyder also demonstrated that this bias exists
+among betting experts (or ``tipsters'') which makes it seem
+also unlikely that the market is
+.I "strong form"
+efficient.
+.PP
 
+.NHD "Measurement of Market Efficiency" 4
 .NHD "Strategies for Horse Race Betting" 3
 .NHD "Main Results"
 .NHD "Objectives, Specification & Design" 2
@@ -291,27 +445,29 @@ efficient market theory
 .PP
 Historical odds pricing data is typically very difficult to
 find if not impossible from most bookmakers. This was a
-signifcant factor in choosing to use prices from the Betfair
+significant factor in choosing to use prices from the Betfair
 exchange. Betfair provides historical betting data at multiple
 levels of resolution including a generous free tier. The
 data provided in this set is structured like exchange data,
 with multiple entries per race documenting changes in prices
 over time. For my purposes, this is beyond what I need as I
-am only interest in the BSP and not the price evolution. I
-used this dataset at first, but found one better suited to
-my uses.
+am only interest in the BSP and not the price evolution.
+I used this dataset at first but found this is beyond what I
+need for my purposes, as I am only interested in the BSP and
+not the price evolution.
 .PP
 Betfair also provides a directory of starting price files
 and allows users to filter them by location and market type.
 This dataset contains some useful information not included
 in the free tier of the standard historical data files such
 as trade volume and minimum and maximum prices for each
-selection. This dataset is also significantly larger,
+selection. It is also significantly larger,
 containing data from as far back as 2008, compared to 2016
 with the other set.
 .PP
 I produced a Python script to automatically download all of
-the UK win market files and process them to be used within
+the UK win market files from this second dataset and process
+them to be used within
 Pandas. The script saves the data to binary files for quick
 retrieval. It makes sure to not redownload files it has
 already obtained so it can easily update the existing
@@ -388,7 +544,7 @@ races was only around 2000, compared to the 170,000+ of the
 UK dataset.
 .NHD "Software Development" 3
 .PP
-I decided to use python through Jupyter Lab to write and run
+I decided to use Python through Jupyter Lab to write and run
 my software as it is what I had the most experience with for
 statistical analysis.
 .NHD "Data Structure and Statistics" 4
@@ -407,10 +563,10 @@ there is negative arbitrage and a weighted selection of back
 bets is guaranteed to lose money. Since the data for this
 project is using the BSP, it can trivially be shown that it
 is possible to arbitrage almost every single market. This is
-beacuse for BSP, both back bettors and lay bettors are given
+because for BSP, both back bettors and lay bettors are given
 the same price. In real terms this arbitrage is actually
 impossible to achieve however, as the BSP is not possible to
-know before the off and by betting this way you are certain
+know before the off, and by betting this way you are certain
 to move the market.
 .PP
 I then added fields for partial pre calculation of the Brier
@@ -444,7 +600,7 @@ DataFrame.
 .NHD "Trading Strategies" 4
 .PP
 Trading strategies are implemented using a system in which
-the strategy function recieves a list of available runners
+the strategy function receives a list of available runners
 to bet on and returns a ``bet slip''. The bet slip contains
 information about which race and runner it chose, as well as
 the amount bet and whether or not the selection won. The

@@ -81,7 +81,7 @@
 %A Tamarkin, Maurry
 %D 1998
 
-%T Explaining the favorite–long shot bias: is it risk-love or misperceptions?
+%T Explaining the favorite-long shot bias: is it risk-love or misperceptions?
 %V 118
 %N 4
 %I The University of Chicago Press
@@ -91,7 +91,7 @@
 %A Wolfers, Justin
 %D 2010
 
-%T Adjusting bookmaker’s odds to allow for overround
+%T Adjusting bookmaker's odds to allow for overround
 %V 5
 %N 6
 %I Science Publishing Group
@@ -107,7 +107,7 @@
 %N 4
 %P 934-943
 %J International Journal of Forecasting
-%A Štrumbelj, Erik
+%A \[S ah]trumbelj, Erik
 %D 2014-10-01
 %K Betfair
 %K Betting exchange
@@ -215,17 +215,17 @@
 %A Ziemba, William T.
 %A Rubinstein, Mark
 %D 1981-12
-%K Costs
-%K Efficiency
-%K Expected values
+%K Prices
+%K Securities markets
 %K Gambling
+%K Efficiency
 %K Horses
+%K Racetracks
+%K Costs
+%K Expected values
 %K Investments
 %K Investors
-%K Prices
 %K Profits
-%K Racetracks
-%K Securities markets
 %K Stock exchanges
 
 %T A note on the hayek hypothesis and the favorite-longshot bias in parimutuel betting
@@ -391,8 +391,8 @@
 %A Nelson, Forrest D.
 %A Rietz, Thomas A.
 %D 2008-04-01
-%K Automatic forecasting
 %K Calibration
+%K Automatic forecasting
 %K Combining forecasts
 %K Comparative methods
 %K Comparative studies
@@ -413,9 +413,9 @@
 %A Strijbis, Oliver
 %A Arnesen, Sveinung
 %D 2019-01-01
+%K Prediction markets
 %K Evaluating forecasts
 %K Market scoring rules
-%K Prediction markets
 %K Referenda
 %K Vote shares
 
@@ -443,6 +443,7 @@
 %A Wunderlich, Fabian
 %A Memmert, Daniel
 %D 2020-04-01
+%K Sports forecasting
 %K Betting market
 %K Betting odds
 %K Betting returns
@@ -451,7 +452,6 @@
 %K Market efficiency
 %K Profitability of forecasts
 %K Simulation
-%K Sports forecasting
 %K Statistical measures
 
 %T A new interpretation of information rate
@@ -479,4 +479,104 @@
 %A Busche, Kelly
 %A Hall, Christopher D.
 %D 1988
+
+%T Prediction markets
+%V 18
+%N 2
+%I American Economic Association
+%P 107-126
+%J Journal of Economic Perspectives
+%A Wolfers, Justin
+%A Zitzewitz, Eric
+%D 2004
+
+%T Prediction markets for economic forecasting
+%S Working Paper Series
+%A Snowberg, Erik
+%A Wolfers, Justin
+%A Zitzewitz, Eric
+%D 2012-07
+
+%T Interpreting prediction market prices as probabilities
+%S Working Paper Series
+%A Wolfers, Justin
+%A Zitzewitz, Eric
+%D 2006-05
+
+%T Forecasting elections: comparing prediction markets, polls, and their biases
+%V 73
+%N 5
+%I [Oxford University Press, American Association for Public Opinion Research]
+%P 895-916
+%J Public Opinion Quarterly
+%A Rothschild, David
+%D 2009
+
+%T Measuring the incidence of insider trading in a market for state-contingent claims
+%V 103
+%N 420
+%I [Royal Economic Society, Wiley]
+%P 1141-1153
+%J The Economic Journal
+%A Shin, Hyun Song
+%D 1993
+
+%T A dynamic pari-mutuel market for hedging, wagering, and information aggregation
+%S EC '04
+%C New York, NY, USA
+%I Association for Computing Machinery
+%P 170-179
+%A Pennock, David M.
+%D 2004-05-17
+
+%T Gaming dynamic parimutuel markets
+%C Berlin, Heidelberg
+%I Springer
+%P 623-631
+%A Lin, Qianya
+%A Chen, Yiling
+%E Leonardi, Stefano
+%D 2009
+%K Market Maker
+%K Nash Equilibrium
+%K Perfect Bayesian Equilibrium
+%K Prediction Market
+%K Price Function
+
+%T Rational decisions
+%V 14
+%N 1
+%I [Royal Statistical Society, Oxford University Press]
+%P 107-114
+%J Journal of the Royal Statistical Society. Series B (Methodological)
+%A Good, I. J.
+%D 1952
+
+%T Evaluation of neural architectures trained with square loss vs cross-entropy in classification tasks
+%A Hui, Like
+%A Belkin, Mikhail
+%D 2021-10-23
+%K Computer Science - Machine Learning
+%K Statistics - Machine Learning
+
+%T Probabilistic Machine Learning: An introduction
+%I MIT Press
+%A Murphy, Kevin P.
+%D 2022
+
+%T Deep Learning
+%I MIT Press
+%A Goodfellow, Ian
+%A Bengio, Yoshua
+%A Aaron, Courville
+%D 2016
+
+%T A scoring system for probability forecasts of ranked categories
+%V 8
+%N 6
+%I American Meteorological Society
+%P 985-987
+%J Journal of Applied Meteorology (1962-1982)
+%A Epstein, Edward S.
+%D 1969
 

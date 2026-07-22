@@ -4,7 +4,7 @@ move-punctuation
 no-label-in-reference
 accumulate
 sort A
-join-authors " & ", ", "
+join-authors " & " ", "
 label "(A.n|Q) ', ' (D.y|D)"
 short-label "(D.y|D)"
 bracket-label " (" ")" "; "
