@@ -18,7 +18,7 @@ A brief description of the contributions, major findings,
 results achieved and conclusion.
 .AE
 .SH
-.SHD Nomenclature
+.SHD Acronyms
 .GE BSP "Betfair Starting Price"
 .GE CDA "Continuous Double Auction"
 .GE CLOB "Central Limit Order Book"
@@ -28,6 +28,19 @@ results achieved and conclusion.
 .GE PNL "Profit and Loss"
 .GE PP "Pre-play (before the off)"
 .GE WAP "Weighted Average Price"
+.SHD Glossary
+.GE "Arbitrage" "A risk-free opportunity to make money"
+.GE "Back" "A bet that something will happen"
+.GE "Daily Double" "A bet on the winner of two consecutive races"
+.GE "Exacta" "A bet on two horses which must come first and second"
+.GE "Lay" "A bet that something will not happen"
+.GE "Options Contract" "A right but not an obligation to buy or sell a security at a given date."
+.GE "Pandas" "Python library for data manipulation"
+.GE "Parlay" "A single bet which links multiple consecutive wagers"
+.GE "Place" "Come first or second in a race"
+.GE "Prediction Market" "A market that facilitates bets on the outcomes of future events"
+.GE "Python" "Programming Language"
+.GE "Show" "Come first, second or third in a race"
 .NHD Introduction
 .PP
 Horse racing markets have been academically studied as
@@ -207,7 +220,134 @@ above the starting price.
 Betfair FAQ
 .]
 .NHD "Literature Review" 2 
-.NHD "Accuracy of Prediction Markets" 3
+.NHD "Accuracy of Horse Racing Markets" 3
+.NHD "Measurement of Forecast Accuracy" 4
+.PP
+One of the earliest methods for scoring the accuracy of a
+forecast is provided by Brier.
+.[
+#
+brier 1950
+.]
+The Brier score is determined as a result of many
+predictions using the mean squared difference between the
+estimated probability and the actual outcome. In this
+system, a perfect forecast is given a score of zero. This
+can only be achieved if the forecast guesses with 100%
+certainty every time. The Brier score can be shown to be
+equivalent to the Ranked Probability score (proposed by
+Epstein
+.[ (
+#
+epstein 1969
+.]))
+with only two categories.
+.[
+discrete brier weigel
+.]
+.PP
+Good
+.[
+#
+rational decisions
+.]
+developed a method for scoring estimates of probabilities
+now known as log-loss. This method has since become popular
+as a scoring mechanism for machine learning models as it
+highly punishes incorrect estimates. Machine learning
+textbooks indicate that this is the standard cost function
+in use.
+.[
+deep learning goodfellow
+.]
+.[
+murphy machine learning
+.]
+.PP
+Wunderlich and Memmert
+.[
+#
+wunderlich are betting
+.]
+demonstrated that the betting returns of a strategy are not
+necessarily indicative of accuracy in a forecasting model,
+despite demonstrating profitability.
+.NHD "Use of Markets for Forecasting" 4
+.PP
+Existing research has shown prediction markets to provide
+accurate estimates of outcomes for elections over both long
+and short time frames.
+.[
+long term
+.]
+Much previous work focusses on election markets, where
+bettors are rewarded for correctly guessing the outcome of a
+political election. Rothschild
+.[
+#
+forecasting elections
+.]
+showed that, when used appropriately, prediction markets can
+perform significantly better than the very best polls.
+Another study found prediction markets to outperform a
+survey when used to predict the reproducibility of studies
+published in psychology journals.
+.[
+reproducibility
+.]
+.PP
+Because of the demonstrated favourite-longshot bias in
+horse racing, many studies attempt to convert odds given
+by bookmakers or markets into ``real'' probabilities.
+\[S ah]trumbelj
+.[
+#
+Erik determining forecast
+.]
+used Shin's
+.[
+#
+shin 1993
+.]
+model to create more accurate forecasts than those created
+through odds normalisation or regression. These methods are
+criticised by Clarke et al
+.[. (
+#
+Clarke adjusting 
+.])
+for potentially producing negative probabilities and in the
+case of normalisation, not accounting for the
+favourite-longshot bias. They share that an alternative
+power method instead performs as well as Shin's, or better.
+.PP
+The mechanisms by which markets produce accurate forecasts
+has also been studied. Strijbis and Arnesen
+.[
+#
+variance markets
+.]
+find that the the setup of the market influences accuracy
+the most, while features of the event and the market's
+participants have an insignificant impact. Prediction
+markets require the right incentives in order to produce the
+most accurate and up to date forecasts.
+.[
+designing markets prediction
+.]
+Markets will also suffer if a group of insiders are able to
+influence the outcome. If the goal of the market is to
+produce the best forecast, then it must incentivise
+immediate truth-telling instead of deception. Pennock
+.[
+#
+pennock 2004
+.]
+suggests an alternative ``dynamic pari-mutuel market'' (DPM)
+which functions similary to typical parimutuel betting. A
+DPM allows investors to buy and sell bets at a changing
+rate determined by the market, giving them an opportunity to
+hedge or sell their bets early.
 .NHD "Favourite-Longshot Bias" 4
 .PP
 The favourite longshot-bias has been demonstrated within
@@ -218,10 +358,10 @@ Griffith 1949
 This is a phenomenom in which bettors tend to prefer to bet
 on outlier horses, as opposed to the safer options. In turn,
 this moves the odds given by the market as favourite horses
-are given worse implied odds and longshots are given better
-implied odds. Other than the long and short-odded horses,
-Griffith found that the odds for horses were on average
-accurate.
+are given worse implied probabilities of winning and
+longshots are given better implied probabilities of winning.
+Other than the long and short-odded horses, Griffith found
+that the odds for horses were on average accurate.
 .PP
 Some studies have attempted to determine why this is the
 case. Weitzman
@@ -278,134 +418,8 @@ found that bettors at the Hong Kong Jockey Club do not
 exhibit the same apparent risk-loving behaviour. They posit
 that the larger betting volume in Hong Kong may influence
 the bias.
-.NHD "Use of Markets for Forecasting" 4
-.PP
-Existing research has shown prediction markets to provide
-accurate estimates of outcomes for elections over both long
-and short time frames.
-.[
-long term
-.]
-Much previous work focusses on election markets, where
-bettors are rewarded for correctly guessing the outcome of a
-political election. Rothschild
-.[
-#
-forecasting elections
-.]
-showed that, when used appropriately, prediction markets can
-perform significantly better than the very best polls.
-Another study found prediction markets to outperform a
-survey when used to predict the reproducibility of studies
-published in psychology journals.
-.[
-reproducibility
-.]
-.PP
-Because of the demonstrated favourite-longshot bias in
-sports betting, many studies attempt to convert odds given
-by bookmakers or markets into ``real'' probabilities.
-\[S ah]trumbelj
-.[
-#
-Erik determining forecast
-.]
-used Shin's
-.[
-#
-shin 1993
-.]
-model to create more accurate forecasts than those created
-by odds normalisation or regression. These methods are
-criticised by Clarke et al
-.[. (
-#
-Clarke adjusting 
-.])
-for potentially producing negative probabilities and in the
-case of normalisation, not accounting for the
-favourite-longshot bias. They share that an alternative
-power method instead performs as well as Shin's, or better.
-.PP
-The mechanisms by which markets produce accurate forecasts
-has also been studied. Strijbis and Arnesen
-.[
-#
-variance markets
-.]
-find that the the setup of the market influences accuracy
-the most, while features of the event and the market's
-participants have an insignificant impact. Prediction
-markets require the right incentives in order to produce the
-most accurate and up to date forecasts.
-.[
-designing markets prediction
-.]
-Markets will also suffer if a group of insiders are able to
-influence the outcome. If the goal of the market is to
-produce the best forecast, then it must incentivise
-immediate truth-telling instead of deception. Pennock
-.[
-#
-pennock 2004
-.]
-suggests an alternative ``dynamic pari-mutuel market'' (DPM)
-which functions similary to typical parimutuel betting. A
-DPM allows investors to buy and sell bets at a changing
-rate determined by the market, giving them an opportunity to
-hedge or sell their bets early.
-.NHD "Measurement of Forecast Accuracy" 4
-.PP
-One of the earliest methods for scoring the accuracy of a
-forecast is provided by Brier.
-.[
-#
-brier 1950
-.]
-The Brier score is determined as a result of many
-predictions using the mean squared difference between the
-estimated probability and the actual outcome. In this
-system, a perfect forecast is given a score of zero. This
-can only be achieved if the forecast guesses with 100%
-certainty every time. The Brier score can be shown to be
-equivalent to the Ranked Probability score (proposed by
-Epstein
-.[ (
-#
-epstein 1969
-.]))
-with only two categories.
-.[
-discrete brier weigel
-.]
-.PP
-Good
-.[
-#
-rational decisions
-.]
-developed a method for scoring estimates of probabilities
-now known as log-loss. This method has since become popular
-as a scoring mechanism for machine learning models as it
-highly punishes incorrect estimates. Machine learning
-textbooks indicate that this is the standard cost function
-in use.
-.[
-deep learning goodfellow
-.]
-.[
-murphy machine learning
-.]
-.PP
-Wunderlich and Memmert
-.[
-#
-wunderlich are betting
-.]
-demonstrated that the betting returns of a strategy are not
-necessarily indicative of accuracy in a forecasting model,
-despite demonstrating profitability.
-.NHD "Efficiency of Prediction Markets" 3
+.NHD "Efficiency of Horse Racing Markets" 3
+.NHD "Measurement of Market Efficiency" 4
 .PP
 Fama
 .[
@@ -413,8 +427,23 @@ Fama
 fama 1970
 .]
 set out three tests of efficiency for markets depending on
-how how rigourously they can be described as efficient. In a
-study of 1,730 races, Snyder
+how how rigourously they can be described as efficient.
+An efficient market is one that is said to fully incorporate
+all of the available information into the prices.
+For a market to be 
+.I "weak form"
+efficient, the information set is constrained to that of
+historical price data. The
+.I "semi-strong form"
+tests also incorporate information widely available to the
+general public. In the
+.I "strong form"
+tests, the insight of investors with insider knowledge is
+also considered.
+.NHD "Efficiency in Parimutuel Racing Markets" 4
+.PP
+In a study of 1,730 races in american parimutuel win
+markets, Snyder
 .[
 #
 Snyder 1978
@@ -434,14 +463,58 @@ also unlikely that the market is
 .I "strong form"
 efficient.
 .PP
-
-.NHD "Measurement of Market Efficiency" 4
-.NHD "Strategies for Horse Race Betting" 3
-.NHD "Main Results"
-.NHD "Objectives, Specification & Design" 2
-.NHD "Methodology & Implementation" 2
-.NHD "Data Acquisition" 3
-.NHD "Betfair Exchange UK Horse Racing Win Markets" 4
+Some research has been done in order to relate the odds of
+exotic bets to each other. Exotic bets are those outside of
+the typical win, show or place bets and typically involve
+betting on more than one horse in a particular sequence.
+This is useful for analysis of the market as a whole as
+exotic bets should in theory be priced equivalently to
+individually placed structured bets on the same horses, if
+the market is efficient. Ali's
+.[
+#
+ali 1979
+.]
+analysis of 1,089 racing days suggest that the efficient market
+hypothesis cannot be ruled out for horse racing. This is due
+to an observation of the difference in prices of daily
+double bets and equivalently constructed parlays to not be
+statistically significant. In a different study however,
+Asch and Quandt
+.[
+#
+asch 1987
+.]
+find that for both exacta and daily double bets, their
+payoffs are not the same as equivalent bets on individual
+horses. Thus demonstrating market inefficiency.
+.PP
+An alternative solution to show a lack of efficiency is to
+develop a betting system which is profitable.
+Hausch et al
+.[. (
+#
+hausch 1981
+.])
+set about to create a technical betting system for place and
+show markets. Their strategy only used historical pricing
+data and so attempts to demonstrate a lack of
+.I "weak form"
+efficiency.  They argued that their system successfully
+exploited a market inefficiency and was able to generate a
+consistent profit. With a follow up paper, Hausch and Ziemba
+.[
+#
+hausch 1985
+.]
+greatly improved the system making it more profitable
+and applicable to any racetrack. They also demonstrated how
+more people using the system would ultimately cause the
+market to become efficient.
+.NHD "Objectives, Specification & Design"
+.NHD "Methodology & Implementation"
+.NHD "Data Acquisition" 2
+.NHD "Betfair Exchange UK Horse Racing Win Markets" 3
 .PP
 Historical odds pricing data is typically very difficult to
 find if not impossible from most bookmakers. This was a
@@ -479,7 +552,7 @@ different events in the UK, starting from September 1st
 2008. There are over 1.5 million entries for selections
 within the races. This data is formatted into three
 different tables: events, races and, runners.
-.NHD Events 5
+.NHD Events 4
 .TS
 tab(;) allbox;
 lb lb lb
@@ -489,7 +562,7 @@ event_id;Integer;Unique identifier provided by Betfair
 location;String;
 event_date;Datetime;
 .TE
-.NHD Races 5
+.NHD Races 4
 .TS
 tab(;) allbox;
 lb lb lb
@@ -507,7 +580,7 @@ Races are given numbers indicating their sequence position within an event.
 T}
 event_id;Integer;Relational key.
 .TE
-.NHD Runners 5
+.NHD Runners 4
 .TS
 tab(;) allbox;
 lb lb lb
@@ -531,7 +604,7 @@ pptradedvol;Float32;Trade volume before the off
 iptradedvol;Float32;Trade volume after the off
 race_id;Integer;Relational key.
 .TE
-.NHD "Hong Kong Jockey Club" 4
+.NHD "Hong Kong Jockey Club" 3
 .PP
 I also downloaded data from the website of the Hong Kong
 Jockey club in order to compare it against the UK market.
@@ -542,13 +615,13 @@ to collect only went back to 2022 and the reduced number of
 racecourses operated by the HKJC meant that the number of
 races was only around 2000, compared to the 170,000+ of the
 UK dataset.
-.NHD "Software Development" 3
+.NHD "Software Development" 2
 .PP
 I decided to use Python through Jupyter Lab to write and run
 my software as it is what I had the most experience with for
 statistical analysis.
-.NHD "Data Structure and Statistics" 4
-.NHD "Pre-Processing" 5
+.NHD "Data Structure and Statistics" 3
+.NHD "Pre-Processing" 4
 .PP
 I pre-processed my data to include some more fields that
 would be useful. Pre-processing fields like this means that
@@ -574,7 +647,7 @@ score and Log-Loss. This is particularly useful as it means
 that to determine the scores for a certain subset of races,
 they can simply be summated using the groups generated in
 the next section.
-.NHD "Categorisation" 5
+.NHD "Categorisation" 4
 .PP
 Given the available data from my dataset I decided upon a
 list of ways to categorise the horse races: race number,
@@ -597,7 +670,7 @@ sum
 .ft
 will be ran per group, instead of for all data in the
 DataFrame.
-.NHD "Trading Strategies" 4
+.NHD "Trading Strategies" 3
 .PP
 Trading strategies are implemented using a system in which
 the strategy function receives a list of available runners
@@ -619,7 +692,7 @@ the readability of the code as the need for looping is
 removed. The code is much more representative of what is
 actually happening. Secondly, there is a major performance
 increase by writing the software in this way.
-.NHD "Naive Strategies" 5
+.NHD "Naive Strategies" 4
 .PP
 The first naive strategy simply bets one unit of currency on
 the favourite (runner with the highest implied probability)
@@ -637,7 +710,7 @@ attempts to ``hedge'' the bet by betting lower for worse
 odds and higher for better odds. If the prices for the
 favourite horse are accurate, then this strategy should
 consistently break even.
-.NHD "Learning Strategy" 5
+.NHD "Learning Strategy" 4
 .PP
 I created a very simple learning strategy that uses a
 rolling average to estimate the current likelihood of the
@@ -658,9 +731,9 @@ historical prices. If this strategy is able to make a
 profit, it indicates that the market is not
 .I weak-form
 efficient.
-.NHD "Results, Analysis & Evaluation" 2
-.NHD "Accuracy" 3
-.NHD "Efficiency" 3
+.NHD "Results, Analysis & Evaluation"
+.NHD "Accuracy" 2
+.NHD "Efficiency" 2
 .NHD "Legal, Social, Ethical & Professional Issues"
 .BP
 Use of live animals?

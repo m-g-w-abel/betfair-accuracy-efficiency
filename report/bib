@@ -190,15 +190,15 @@
 %N 4
 %C Linthicum, United States
 %I Institute for Operations Research and the Management Sciences
-%P 381–394
+%P 381-394
 %J Management Science (pre-1986)
 %A Hausch, Donald B.
 %A Ziemba, William T.
 %D 1985-04
-%K Gambling
 %K Bias
 %K Efficiency
 %K Efficient markets
+%K Gambling
 %K Growth models
 %K Horses
 %K Probability
@@ -579,4 +579,13 @@
 %J Journal of Applied Meteorology (1962-1982)
 %A Epstein, Edward S.
 %D 1969
+
+%T Some evidence of the efficiency of a speculative market
+%V 47
+%N 2
+%I [Wiley, Econometric Society]
+%P 387-392
+%J Econometrica
+%A Ali, Mukhtar M.
+%D 1979
 

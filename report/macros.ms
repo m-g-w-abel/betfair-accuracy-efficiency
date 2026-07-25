@@ -24,6 +24,6 @@ delim $$
 . XH 1 \\$1
 ..
 .de GE
-. IP \fB\\$1\fP 1i
+. IP "\fB\\$1\fP" 1i
 \(em \\$2
 ..
