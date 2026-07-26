@@ -32,8 +32,10 @@ results achieved and conclusion.
 .GE "Arbitrage" "A risk-free opportunity to make money"
 .GE "Back" "A bet that something will happen"
 .GE "Daily Double" "A bet on the winner of two consecutive races"
+.GE "Each-way" "A combination of a win and place bet"
 .GE "Exacta" "A bet on two horses which must come first and second"
 .GE "Lay" "A bet that something will not happen"
+.GE "Off" "The start of the race"
 .GE "Options Contract" "A right but not an obligation to buy or sell a security at a given date."
 .GE "Pandas" "Python library for data manipulation"
 .GE "Parlay" "A single bet which links multiple consecutive wagers"
@@ -41,6 +43,7 @@ results achieved and conclusion.
 .GE "Prediction Market" "A market that facilitates bets on the outcomes of future events"
 .GE "Python" "Programming Language"
 .GE "Show" "Come first, second or third in a race"
+.GE "Tipster" "Professional who publishes betting guides"
 .NHD Introduction
 .PP
 Horse racing markets have been academically studied as
@@ -178,15 +181,15 @@ odds to account for the amount of money bet already
 not sum to one.
 .NHD "Parimutuel Odds" 3
 .PP
-A tote (otherwise known as parimutuel betting) is a system
-in which money for all bets is placed into a pool and then
-distributed to winning bettors. This means that bettors are
-not given an exact payout quote at the time of purchasing
-their bet, but they may be given an estimate. Tote operators
-make money by taking a certain percentage of the pool for
-themselves, typically called the ``track take''. These types
-of bets are typically facilitated by the track operator
-themselves, such as the HKJC.
+Parimutuel betting (commonly known as a `tote' in the UK) is
+a system in which money for all bets is placed into a pool
+and then distributed to winning bettors. This means that
+bettors are not given an exact payout quote at the time of
+purchasing their bet, but they may be given an estimate.
+Tote operators make money by taking a certain percentage of
+the pool for themselves, typically called the ``track
+take''. These types of bets are typically facilitated by the
+track operator themselves, such as the HKJC.
 .[
 HKJC Pari-mutuel
 .]
@@ -231,20 +234,30 @@ brier 1950
 .]
 The Brier score is determined as a result of many
 predictions using the mean squared difference between the
-estimated probability and the actual outcome. In this
+estimated probability and the actual outcome. Formally:
+.EQ
+BS = 1 over N sum from t=1 to N (f sub t - o sub t ) sup 2
+.EN
+where $f sub t$ is the forecast probability, $o sub t$ is
+the actual outcome ($0$ if did not happen or $1$ if did) and
+$N$ is the number of forecasts.
+In this
 system, a perfect forecast is given a score of zero. This
 can only be achieved if the forecast guesses with 100%
-certainty every time. The Brier score can be shown to be
-equivalent to the Ranked Probability score (proposed by
-Epstein
-.[ (
-#
+certainty every time. 
+Ranked Probability Score
+.[
 epstein 1969
-.]))
-with only two categories.
+.]
+is an extension of the Brier score to support multiple
+outcomes Ranked Probability Score with binary outcomes can
+be shown to be equivalent to the Brier score.
 .[
 discrete brier weigel
 .]
+Brier score will be the most useful in this report, as in
+(most) betting markets there are only two possible outcomes:
+a winning bet or a losing bet.
 .PP
 Good
 .[
@@ -254,15 +267,33 @@ rational decisions
 developed a method for scoring estimates of probabilities
 now known as log-loss. This method has since become popular
 as a scoring mechanism for machine learning models as it
-highly punishes incorrect estimates. Machine learning
-textbooks indicate that this is the standard cost function
-in use.
+highly punishes overconfidence in incorrect predictions. For
+a multiple class classification problem:
+.EQ
+LL = - sum from t=1 to N o sub t log ( f sub t )
+.EN
+where $f sub t$ is the forecast probability, $o sub t$ is
+the actual outcome ($0$ if did not happen or $1$ if did) and
+$N$ is the number of forecasts. A horse race only has one
+winner and so for a single race win market, it can be shown that
+$LL = - log ( f sub "winner" )$.
+Log-loss has become incredibly popular as a cost function
+(function that scores prediction accuracy) for machine
+learning. Machine learning textbooks
 .[
 deep learning goodfellow
 .]
 .[
 murphy machine learning
 .]
+share that log-loss should be considered the standard cost
+function. Since log-loss easily supports binary outcomes, it
+can be applied in addition to Brier score as a measurement
+of accuracy for betting predictions. Because every non
+winning horse contributes the same score of zero, it appears
+to me that Brier score is more appropriate for general
+ranking of horse race win forecasting as it incorporates
+more information from the losing horses.
 .PP
 Wunderlich and Memmert
 .[
@@ -271,18 +302,17 @@ wunderlich are betting
 .]
 demonstrated that the betting returns of a strategy are not
 necessarily indicative of accuracy in a forecasting model,
-despite demonstrating profitability.
+despite demonstrating profitability. Instead, there is a
+difference in a model forecasting accurately and profitably.
 .NHD "Use of Markets for Forecasting" 4
 .PP
-Existing research has shown prediction markets to provide
+Current research shows prediction markets to provide
 accurate estimates of outcomes for elections over both long
 and short time frames.
 .[
 long term
 .]
-Much previous work focusses on election markets, where
-bettors are rewarded for correctly guessing the outcome of a
-political election. Rothschild
+Rothschild
 .[
 #
 forecasting elections
@@ -321,13 +351,12 @@ case of normalisation, not accounting for the
 favourite-longshot bias. They share that an alternative
 power method instead performs as well as Shin's, or better.
 .PP
-The mechanisms by which markets produce accurate forecasts
-has also been studied. Strijbis and Arnesen
+Strijbis and Arnesen
 .[
 #
 variance markets
 .]
-find that the the setup of the market influences accuracy
+find that the setup of the market influences accuracy
 the most, while features of the event and the market's
 participants have an insignificant impact. Prediction
 markets require the right incentives in order to produce the
@@ -344,7 +373,7 @@ immediate truth-telling instead of deception. Pennock
 pennock 2004
 .]
 suggests an alternative ``dynamic pari-mutuel market'' (DPM)
-which functions similary to typical parimutuel betting. A
+which functions similarly to typical parimutuel betting. A
 DPM allows investors to buy and sell bets at a changing
 rate determined by the market, giving them an opportunity to
 hedge or sell their bets early.
@@ -355,7 +384,7 @@ racing markets as far back as 1949.
 .[
 Griffith 1949
 .]
-This is a phenomenom in which bettors tend to prefer to bet
+This is a phenomenon in which bettors tend to prefer to bet
 on outlier horses, as opposed to the safer options. In turn,
 this moves the odds given by the market as favourite horses
 are given worse implied probabilities of winning and
@@ -396,7 +425,8 @@ skewness not risk
 suggested an alternative explanation for the
 favourite-longshot bias. They claimed that it was possible
 that bettors could actually be risk-averse and instead have
-a preference for skewness. To back this up they examined
+a preference for skewness. Skewness here is the asymmetry of
+betting returns about the mean. To back this up they examined
 popular betting strategies and determined that they were
 better aligned with a preference for skewness rather than
 risk. Another theory is put forward by Snowberg and Wolfers
@@ -427,9 +457,11 @@ Fama
 fama 1970
 .]
 set out three tests of efficiency for markets depending on
-how how rigourously they can be described as efficient.
+how rigourously they can be described as efficient.
 An efficient market is one that is said to fully incorporate
-all of the available information into the prices.
+all the available information into the prices. This means
+that, for an efficient market, it should be impossible to
+create a profit generating strategy.
 For a market to be 
 .I "weak form"
 efficient, the information set is constrained to that of
@@ -440,9 +472,70 @@ general public. In the
 .I "strong form"
 tests, the insight of investors with insider knowledge is
 also considered.
-.NHD "Efficiency in Parimutuel Racing Markets" 4
 .PP
-In a study of 1,730 races in american parimutuel win
+A significant amount of research into the study of
+efficiency in racing markets is specifically focussed on
+parimutuel markets. This is the most common market for
+racing in the United States as well as Hong Kong.
+Comparitively little exists for markets using a CDA such as
+Betfair.
+.NHD "Relationship of Exotic Bets" 4
+.PP
+A lack of market efficiency can be demonstrated by comparing
+the prices of exotic betting options with equivalently
+produced parlays. Exotic bets involve betting on a
+combination of different outcomes for different horses
+within one wager. Popular examples include the daily double,
+in which the first two winning horses of the day must be
+predicted correctly, and an exacta, where the first two
+horses of a race must be predicted in order. A parlay is
+similarly a wager of multiple outcomes, however can be
+constructed from multiple seperate bets with the winnings
+from earlier bets accumulated into future ones.
+.PP
+Certain exotic bets can be shown to have an equivalent
+payoff function to an appropriately constructed parlay. For
+the market to be considered efficient, both the exotic bet
+and the parlay must have an equivalent price. This
+difference in a typical financial market may be considered
+an arbitrage opportunity as one would be able to buy at the
+low price and sell at the high price, guaranteeing a profit.
+Within parimutuel markets however this is not possible, as
+bets cannot be bought and sold at different prices.
+.PP
+Ali's
+.[
+#
+ali 1979
+.]
+analysis of 1,089 racing days uses this principle to compare
+the prices of daily doubles and their equivalently
+constructed parlays. In this analysis, Ali finds that the
+efficient market hypothesis could possibly hold for racing
+markets as the difference in price between the exotic bets
+and the parlays is not statistically significant.  In a
+different study however, Asch and Quandt
+.[
+#
+asch 1987
+.]
+find that for both exacta and daily double bets, their
+payoffs are not the same as equivalent bets on individual
+horses, thus demonstrating market inefficiency.
+.PP
+It is uncommon for betting exchanges to offer any betting
+options for horse races outside of win, place and each-way.
+This means that a comparison of exotic bets and parlays is
+not possible. While it may be possible to compare the prices
+of the win and place bets to the each-way bets, the limited
+volume of non-win markets makes this difficult.
+.NHD "Betting Strategies" 4
+.PP
+The most obvious way to demonstrate a lack of market
+efficiency is to produce a simple, profitable betting
+strategy.
+.PP
+In a study of 1,730 races in American parimutuel win
 markets, Snyder
 .[
 #
@@ -463,40 +556,12 @@ also unlikely that the market is
 .I "strong form"
 efficient.
 .PP
-Some research has been done in order to relate the odds of
-exotic bets to each other. Exotic bets are those outside of
-the typical win, show or place bets and typically involve
-betting on more than one horse in a particular sequence.
-This is useful for analysis of the market as a whole as
-exotic bets should in theory be priced equivalently to
-individually placed structured bets on the same horses, if
-the market is efficient. Ali's
-.[
-#
-ali 1979
-.]
-analysis of 1,089 racing days suggest that the efficient market
-hypothesis cannot be ruled out for horse racing. This is due
-to an observation of the difference in prices of daily
-double bets and equivalently constructed parlays to not be
-statistically significant. In a different study however,
-Asch and Quandt
-.[
-#
-asch 1987
-.]
-find that for both exacta and daily double bets, their
-payoffs are not the same as equivalent bets on individual
-horses. Thus demonstrating market inefficiency.
-.PP
-An alternative solution to show a lack of efficiency is to
-develop a betting system which is profitable.
 Hausch et al
 .[. (
 #
 hausch 1981
 .])
-set about to create a technical betting system for place and
+set about creating a technical betting system for place and
 show markets. Their strategy only used historical pricing
 data and so attempts to demonstrate a lack of
 .I "weak form"
