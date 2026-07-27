@@ -195,10 +195,10 @@
 %A Hausch, Donald B.
 %A Ziemba, William T.
 %D 1985-04
+%K Gambling
 %K Bias
 %K Efficiency
 %K Efficient markets
-%K Gambling
 %K Growth models
 %K Horses
 %K Probability
@@ -588,4 +588,44 @@
 %J Econometrica
 %A Ali, Mukhtar M.
 %D 1979
+
+%T The economics of wagering markets
+%V 36
+%N 4
+%I American Economic Association
+%P 2021-2064
+%J Journal of Economic Literature
+%A Sauer, Raymond D.
+%D 1998
+
+%T Late informed betting and the favourite-longshot bias
+%C St. Louis, United States
+%I Federal Reserve Bank of St. Louis
+%J IDEAS Working Paper Series from RePEc
+%A Ottaviani, Marco
+%A Sørensen, Peter Norman
+%D 2003
+%K Gambling
+%K Bias
+
+%T Efficient market dynamics: unraveling informational efficiency in UK horse racing betting markets through betfair’s time series analysis
+%J International Journal of Information Technology
+%A Singh, Shruti
+%A Kumar, Shantanu
+%A Tondapu, Narayan
+%D 2024-12-02
+%K Betfair
+%K Financial assets
+%K Horse racing market
+%K United Kingdom
+
+%T The pricing of options and corporate liabilities
+%V 81
+%N 3
+%I The University of Chicago Press
+%P 637-654
+%J Journal of Political Economy
+%A Black, Fischer
+%A Scholes, Myron
+%D 1973
 

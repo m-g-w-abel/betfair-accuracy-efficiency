@@ -37,6 +37,7 @@ results achieved and conclusion.
 .GE "Lay" "A bet that something will not happen"
 .GE "Off" "The start of the race"
 .GE "Options Contract" "A right but not an obligation to buy or sell a security at a given date."
+.GE "Overround" "The total implied probability of all events in a market"
 .GE "Pandas" "Python library for data manipulation"
 .GE "Parlay" "A single bet which links multiple consecutive wagers"
 .GE "Place" "Come first or second in a race"
@@ -45,25 +46,6 @@ results achieved and conclusion.
 .GE "Show" "Come first, second or third in a race"
 .GE "Tipster" "Professional who publishes betting guides"
 .NHD Introduction
-.PP
-Horse racing markets have been academically studied as
-valuable research targets since at least the 1940s.
-.[
-Griffith odds
-.]
-Racing markets are good to study for a few reasons. For one,
-they involve a large number of bettors. The bettors have
-varying levels of expertise ranging from absolutely zero to
-professional punters. These markets also closely mirror more
-``traditional'' financial markets, and so research involving
-racing can be extrapolated out to the wider context of
-finance. Betting contracts are similar to options contracts
-in that they have a set expiry time and a payout determined
-by an external factor. The facets of horse racing make it an
-ideal ground to examine the efficient markets model.
-.[
-Snyder 1978
-.]
 .PP
 As of late, prediction markets have become a hot topic.
 Services such as Polymarket and Kalshi are offering the
@@ -82,7 +64,45 @@ this context as there are many repeated similar markets,
 unlike predictions for political events which can be very
 far apart.
 .PP
-Existing research into 
+Racing markets can be considered largely analogous to
+traditional financial markets, with the only real difference
+being social convention.
+.[
+snyder 1978
+.]
+They do have one key difference, in that the lifetime of a
+bet is finite, and the lifetime of a stock is not.
+.[
+Thaler ziemba 1988
+.]
+In this way, they can be considered similar to binary
+options contracts, where there are two different payoff
+values dependant on the result of an external event. The
+difference between options and wagers here is that the value
+of an option is dependant on the value of an underlying
+asset at a future date. Because of this, options are priced
+using the Black-Scholes model
+.[
+#
+black scholes
+.]
+where it can be shown that buying a combination of the
+underlying asset and a risk-free investment can produce a
+payoff equivalent to the option. If not priced this way, an
+arbitrage is apparent and an inefficiency in the market
+occurs. Without an underlying asset to hedge against, wagers
+must be priced differently.
+.PP
+In wider financial markets, it is typical for index funds to
+be selected from a certain subsection of securities. For
+example the S&P 500 tracks the top 500 stocks in the
+United States and the FTSE 100 tracks the top 100 companies
+on the London Stock Exchange. Both of these are examples of
+funds limited to investments within a ceratin region.
+Despite this, little research has been done on how
+prediction markets can be classified in similar ways for
+bettors to make informed decisions on selected groups of
+races only.
 .NHD "Motivation" 2
 .PP
 I was motivated to research this area due to the recent
@@ -92,62 +112,48 @@ markets is currently heavy within the UK. This is because
 they fall under the jurisdiction of the Gambling Commission.
 Many of the newly popular prediction market sites are
 currently illegal to use within the UK, but established
-exchanges such as Betfair are completely legal. Another
-interesting factor of being classed as gambling means that
-winnings within the UK are not taxed. This means that an
-equivalent strategy within a gambling market and the stock
-market may prove ultimately more profitable in the gambling
-market as the only fees to be paid are commission to the
-exchange. In the case of Betfair, commission can be even
-less than just 2% of successful bets.
+exchanges such as Betfair are completely legal.
+.PP
+Another interesting factor of being classed as gambling
+means that winnings within the UK are not taxed. This means
+that an equivalent strategy within a gambling market and the
+stock market may prove ultimately more profitable in the
+gambling market as the only fees to be paid are commission
+to the exchange. In the case of Betfair, commission can be
+even less than just 2% of successful bets.
+.PP
+I want to understand how different classifications of races
+can give us new insights into the markets. These insights
+can be used to aid in the identification of good practices
+for eliciting forecasting odds, or for the production of
+profit through betting strategies. Additionally, this
+research may be applicable outside of the horse racing
+context, especially in general prediction markets, but also
+financial markets as a whole.
 .NHD "Scope" 2
 .PP
-This project observes a variety of different
-classifications of horse races. Each classification type
-is examined to see if there is any link between the
-classification of a horse race and its related betting
-market's accuracy and efficiency. In order to achieve this,
-a database of horse races is compiled using data from the
-Betfair exchange.
+This project explores how the classification of horse races
+can affect the accuracy and efficiency of the market. The
+classifications are both external factors and internal
+market factors. Existing research is used to determine the
+best practices for identifying accuracy and efficiency. A
+sample database of horse races will be compiled and tested
+against to obtain results.
 .NHD "Aims" 2
 .PP
-The primary aim of this project is to determine which
-factors are most significant in influencing the accuracy and
-efficiency of horse racing markets. There are many different
-ways to classify horse races including but not limited to
-time, distance and race type (Hurdles, Chase, Handicap,
-etc.). Additionally, races can be classified by their
-market factors such as trade volume or overround.
-.PP
-Accuracy of the market is a measure of how well the listed
-odds represent the true odds of a horse winning. In a market
-that was 100% accurate, the odds given would provide a $0%$
-return on all winning bets. To determine the accuracy of the
-odds, I will be comparing various test statistics such as
-the Brier score and Log-Loss.
-.PP
-An efficient market is one in which prices are said to
-``fully reflect'' all of the available information and are
-shown to be
-.I weak-form
-efficient when this can be demonstrated using an information
-set made exclusively of historical price data.
-.[
-Fama 1970
-.]
-A systematic betting strategy using historical pricing data
-that is able to generate a consistent profit demonstrates a
-lack of
-.I weak-form
-efficiency within a market.
-.[
-Hausch 1981
-.]
-In order to determine which groups of races are
-.I weak-form
-efficient, I shall apply various betting strategy profiles
-to them in isolation. Some of these strategies will simple and some will be adapted from previous work.
+This project aims to explore the relevance and impact of
+external and market factors on the accuracy and efficiency
+of horse racing markets. Horse races can be classified by
+various external factors such as race time, location and
+distance. Internal classifications involve market
+information such as volume or overround. Similarly,
+traditional financial instruments can be classified by
+external factors like their industry or location of
+operations. They also feature many of the same internal
+market factors including volume.
 .NHD "Objectives" 2
+.PP
+To accomplish my aims I will:
 .BP
 Perform a systematic review of existing research to
 determine existing standards for market accuracy and
@@ -156,11 +162,18 @@ considered to be accurate or efficient.
 .BP
 Obtain an appropriate dataset for research.
 .BP
-Categorise the data into potentially useful groupings.
+Determine the accuracy of my dataset.
 .BP
-Examine each grouping to determine whether or not they fit
-the previously identified definitions of accurate or
-efficient.
+Determine the efficiency of my dataset.
+.BP
+Determine several classifications of horse races to compare.
+.BP
+Determine the relative accuracy of the classifications.
+.BP
+Determine the relative efficiency of each of the
+classifications.
+.BP
+Attempt to exploit any inefficiencies for profit.
 .NHD "Background" 1
 .NHD "Bookmaking" 2
 .NHD "Fixed-Price Odds" 3
@@ -576,10 +589,8 @@ greatly improved the system making it more profitable
 and applicable to any racetrack. They also demonstrated how
 more people using the system would ultimately cause the
 market to become efficient.
-.NHD "Objectives, Specification & Design"
-.NHD "Methodology & Implementation"
-.NHD "Data Acquisition" 2
-.NHD "Betfair Exchange UK Horse Racing Win Markets" 3
+.NHD "Methodology"
+.NHD "Data Source" 2
 .PP
 Historical odds pricing data is typically very difficult to
 find if not impossible from most bookmakers. This was a
@@ -599,25 +610,123 @@ and allows users to filter them by location and market type.
 This dataset contains some useful information not included
 in the free tier of the standard historical data files such
 as trade volume and minimum and maximum prices for each
-selection. It is also significantly larger,
-containing data from as far back as 2008, compared to 2016
-with the other set.
+selection. It is also significantly larger, containing data
+from as far back as 2008, compared to 2016 with the other
+set. In total, the dataset contains odds data for over
+170,000 win markets in the UK. This is the dataset I chose
+to use as it was the most comprehensive and most simple to
+use. It is worth noting that the market mechanism for the
+Betfair exchange is different from the typical parimutuel
+markets explored in other research and so results using this
+dataset can not be directly compared, but they are still
+worth using to explore the impact of a different market
+type.
+.PP
+I had originally also considered using multiple datasets to
+compare different markets. To this end, I obtained a dataset
+from the Hong Kong Jockey Club but it was not sufficient for
+this project as it only contained information from 2,000
+races.
+.NHD "Classification" 2
+.PP
+I decided on a few different classifications to compare
+between. These were decided mostly due to
+what was available within my dataset. I wanted to get a
+varied range of groupings as it was not clear which, if any
+would produce interesting results. For external factors, I
+chose: race number, distance, hour of day, race type,
+location, number of runners. Number of runners could also
+potentially be considered a market factor, as it affects the
+number of possible selections to choose from within the
+market. The market factors are pre-play trade volume and
+overround.
+.NHD "Accuracy" 2
+.PP
+As a baseline, the existence (or non-existence) of the
+favourite-longshot bias within the dataset should be
+established. This is important as it is an expected market
+inaccuracy consistently found across the literature. A
+change in the bias could indicate different sub groups of
+bettors within horse racing with different utility
+estimates. The favourite-longshot bias can be shown by
+looking at the mean returns for horses grouped by odds.
+.PP
+I will plot the implied probabilities given by the odds
+against the true (observed) probabilities. This will be a
+clear indicator of accuracy, as these two values should be
+the same for an accurate market.
+.PP
+Brier scores and log-loss will also be used. With the entire
+dataset given as a benchmark, the groups produced by the
+different classifications will be compared to see if they
+are to be considered more or less accurate by these test
+statistics. These values give a more concrete value to
+compare accuracy between.
+.NHD "Efficiency" 2
+.PP
+Due to my choice of dataset, I do not have an opportunity to
+compare prices of exotic bets to parlays. This means that
+the most straight forward way to test for market efficiency
+is to subject the market to various betting strategies. The
+existing research for this is done in the context of
+parimutuel betting, where it is known how exactly a bet will
+change the odds within the market.
+.[
+hausch 1981
+.]
+.[
+hausch 1985
+.]
+Because of this, I will not be able to employ the same
+strategies, beyond the simplest of betting the same amount
+on favourite horses.
+.PP
+The first strategy I will implement simply bets one unit on
+the favourite horse. This is one of the simplest and most
+widely implemented strategies. As a slight twist on this, I
+will implement a similar strategy where the size of the bet
+is determined by the implied probability of the odds price.
+This is intended to hedge potential losses from horses with
+a lesser chance of winning.
+.PP
+I will also test a slightly more involved strategy. This
+strategy will take a running average of how likely it is
+that the favourite horse has won and take this value to be
+the true probability of the favourite horse winning. The
+probability will be plugged into the Kelly Criterion in
+order to determine the size of a bet. That is:
+$f* = ( bp - q ) / b$
+where $f*$ is the fraction of wealth to bet, $p$ is the
+likelihood of the bet winning, $q$ is $1-p$ and $b$ is the
+proportion of wealth won if successful.
+.[
+Thorp 2006
+.]
+While this strategy will help identify market
+inefficiencies, it is not pratical for real use as it does
+not take into account how placing a bet will move the
+market. Since this strategy relies only on historical price
+data, it intends to demonstrate a lack of
+.I "weak form"
+efficiency.
+.NHD "Implementation"
+.NHD "Data Acquisition" 2
 .PP
 I produced a Python script to automatically download all of
-the UK win market files from this second dataset and process
-them to be used within
-Pandas. The script saves the data to binary files for quick
-retrieval. It makes sure to not redownload files it has
-already obtained so it can easily update the existing
+the files found in my dataset and process them to be used
+within Pandas. The script saves the data to binary files for
+quick retrieval. It makes sure to not redownload files it
+has already obtained so it can easily update the existing
 database. As well as this, it automatically slows down when
 rate limited to ensure that all files are downloaded.
 .PP
-The final dataset contains over 170,000 races from 24,000
-different events in the UK, starting from September 1st
-2008. There are over 1.5 million entries for selections
-within the races. This data is formatted into three
-different tables: events, races and, runners.
-.NHD Events 4
+Another script transforms the flat file structure into a
+relational one. The relational structure avoids duplicating
+data and keeps unrelated information separate.  This data is
+formatted into three different tables: events, races and,
+runners.
+.KS
+.NHD Events 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -627,7 +736,9 @@ event_id;Integer;Unique identifier provided by Betfair
 location;String;
 event_date;Datetime;
 .TE
-.NHD Races 4
+.KE
+.KS
+.NHD Races 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -645,7 +756,9 @@ Races are given numbers indicating their sequence position within an event.
 T}
 event_id;Integer;Relational key.
 .TE
-.NHD Runners 4
+.KE
+.KS
+.NHD Runners 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -669,17 +782,7 @@ pptradedvol;Float32;Trade volume before the off
 iptradedvol;Float32;Trade volume after the off
 race_id;Integer;Relational key.
 .TE
-.NHD "Hong Kong Jockey Club" 3
-.PP
-I also downloaded data from the website of the Hong Kong
-Jockey club in order to compare it against the UK market.
-This was done by scraping their webpages for historical
-racing events. Ultimately it proved that this data was not
-particularly useful, however. The available data I was able
-to collect only went back to 2022 and the reduced number of
-racecourses operated by the HKJC meant that the number of
-races was only around 2000, compared to the 170,000+ of the
-UK dataset.
+.KE
 .NHD "Software Development" 2
 .PP
 I decided to use Python through Jupyter Lab to write and run
@@ -758,44 +861,7 @@ removed. The code is much more representative of what is
 actually happening. Secondly, there is a major performance
 increase by writing the software in this way.
 .NHD "Naive Strategies" 4
-.PP
-The first naive strategy simply bets one unit of currency on
-the favourite (runner with the highest implied probability)
-in every race. Due to how I set up the strategy
-implementation, this is incredibly simple as it just
-involves grouping the runners per race and then submitting a
-bet of one. If the favourite horse is given odds lower than
-its real odds, then this strategy should consistently make
-money. Breaking even is an implication of the favourite
-being accurately priced over time.
-.PP
-The other naive strategy is similar to the first, but
-instead of betting a constant amount on each favourite, it
-attempts to ``hedge'' the bet by betting lower for worse
-odds and higher for better odds. If the prices for the
-favourite horse are accurate, then this strategy should
-consistently break even.
 .NHD "Learning Strategy" 4
-.PP
-I created a very simple learning strategy that uses a
-rolling average to estimate the current likelihood of the
-favourite horse winning. It assumes the current average of
-win rate of the favourite horse to be the true win rate and
-uses the Kelly Criterion to size a bet. That is:
-$f* = ( bp - q ) / b$
-where $f*$ is the fraction of wealth to bet, $p$ is the
-likelihood of the bet winning, $q$ is $1-p$ and $b$ is the
-proportion of wealth won if successful.
-.[
-Thorp 2006
-.]
-It is worth noting that this does not account for the impact
-that a bet will have on the market.  This is a very simple
-strategy which does not use any information outside of the
-historical prices. If this strategy is able to make a
-profit, it indicates that the market is not
-.I weak-form
-efficient.
 .NHD "Results, Analysis & Evaluation"
 .NHD "Accuracy" 2
 .NHD "Efficiency" 2
@@ -809,6 +875,9 @@ Similarity to stock market
 .BP
 legality of companies betting
 .NHD Conclusion
+.NHD "Future Work"
+.BP
+compare polling/other forecasting?
 .bp
 .XS
 References
