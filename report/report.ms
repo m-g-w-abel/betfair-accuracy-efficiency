@@ -864,6 +864,13 @@ increase by writing the software in this way.
 .NHD "Learning Strategy" 4
 .NHD "Results, Analysis & Evaluation"
 .NHD "Accuracy" 2
+.NHD "Favourite-Longshot Bias" 3
+
+.KF
+.PSPIC ../output/all-fl-mean.ps 8i
+.FT "Favourite Longshot Bias"
+.KE
+.PP
 .NHD "Efficiency" 2
 .NHD "Legal, Social, Ethical & Professional Issues"
 .BP
