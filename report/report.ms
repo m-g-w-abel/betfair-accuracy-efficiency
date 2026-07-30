@@ -192,6 +192,17 @@ time), they will ensure a profit. This is done by changing
 odds to account for the amount of money bet already
 (balancing the books) and by providing unfair odds that do
 not sum to one.
+.PP
+There are multiple different ways to
+represent odds prices. Throughout this report, I will use
+decimal odds. Decimal odds are given as real numbers greater
+than one which represent the total payout for a winning bet.
+For example if a bettor bets £100 dollars at odds of 2,
+their winning payout would be £200 - a profit of £100 or
+100%. The payout for all losing bets is 0 (a loss of all
+money bet). Assuming that the expected value of a wager is zero
+(no profit or loss), the implied probability of winning is
+given by $1 smallover odds$.
 .NHD "Parimutuel Odds" 3
 .PP
 Parimutuel betting (commonly known as a `tote' in the UK) is
@@ -302,11 +313,14 @@ murphy machine learning
 share that log-loss should be considered the standard cost
 function. Since log-loss easily supports binary outcomes, it
 can be applied in addition to Brier score as a measurement
-of accuracy for betting predictions. Because every non
-winning horse contributes the same score of zero, it appears
+of accuracy for betting predictions. Because every
+non-winning horse contributes the same score of zero, it
+appears
 to me that Brier score is more appropriate for general
 ranking of horse race win forecasting as it incorporates
-more information from the losing horses.
+more information from the losing horses. Brier score will be
+the primary metric I use to measure accuracy, but log-loss
+will be a useful secondary comparator.
 .PP
 Wunderlich and Memmert
 .[
@@ -317,6 +331,12 @@ demonstrated that the betting returns of a strategy are not
 necessarily indicative of accuracy in a forecasting model,
 despite demonstrating profitability. Instead, there is a
 difference in a model forecasting accurately and profitably.
+Later in this report, I will explain and demonstrate some
+betting strategies, however they are only relevant to the
+efficiency of the market. This is a prime example of what
+Wunderlich and Memmert explain. The strategies can be
+successful, even without predicting anything to do with
+horse racing.
 .NHD "Use of Markets for Forecasting" 4
 .PP
 Current research shows prediction markets to provide
@@ -332,14 +352,18 @@ forecasting elections
 .]
 showed that, when used appropriately, prediction markets can
 perform significantly better than the very best polls.
-Another study found prediction markets to outperform a
+Elections are just one example, but prediction markets have
+been used to great success across many different domains of
+forecasting.
+One study found prediction markets to outperform a
 survey when used to predict the reproducibility of studies
 published in psychology journals.
 .[
 reproducibility
 .]
 .PP
-Because of the demonstrated favourite-longshot bias in
+Because of the demonstrated favourite-longshot bias (see
+more below) in
 horse racing, many studies attempt to convert odds given
 by bookmakers or markets into ``real'' probabilities.
 \[S ah]trumbelj
@@ -363,6 +387,12 @@ for potentially producing negative probabilities and in the
 case of normalisation, not accounting for the
 favourite-longshot bias. They share that an alternative
 power method instead performs as well as Shin's, or better.
+The necessity of these models in the first place
+demonstrates the lack of accuracy present within the
+markets. If the given odds can be altered using some
+function to provide forecasts of greater accuracy, then the
+market obviously isn't producing the best possible forecasts
+inherently.
 .PP
 Strijbis and Arnesen
 .[
@@ -371,7 +401,9 @@ variance markets
 .]
 find that the setup of the market influences accuracy
 the most, while features of the event and the market's
-participants have an insignificant impact. Prediction
+participants have an insignificant impact. Market setup
+incorporates factors such as liquidity and the market
+mechanism. Prediction
 markets require the right incentives in order to produce the
 most accurate and up to date forecasts.
 .[
@@ -380,7 +412,19 @@ designing markets prediction
 Markets will also suffer if a group of insiders are able to
 influence the outcome. If the goal of the market is to
 produce the best forecast, then it must incentivise
-immediate truth-telling instead of deception. Pennock
+immediate truth-telling instead of deception. A typical
+parimutuel racing market fundamentally does not meet this
+requirement. This is because market participants are
+encouraged to wait until the very last moment to bet, so as
+to hide their beliefs about the probability of a win. A CDA
+(the primary mechanism of the Betfair Exchange) encourages
+price discovery over time but may still incentivise
+participants to to lie about their true valuation. Since the
+price of a parimutuel market is not set until the market
+closes, there is no incentive for the market to track
+changes in information unlike a CDA.
+.PP
+Pennock
 .[
 #
 pennock 2004
@@ -413,7 +457,12 @@ Weitzman 1965
 .]
 used utility theory to derive a utility curve for one bettor
 and found it to be similar to the theoretical one proposed
-by Markowitz. To follow this study, Ali
+by Markowitz.
+.[
+#
+the utility of wealth
+.]
+To follow this study, Ali
 .[
 #
 Ali 1977
@@ -470,7 +519,7 @@ Fama
 fama 1970
 .]
 set out three tests of efficiency for markets depending on
-how rigourously they can be described as efficient.
+how rigorously they can be described as efficient.
 An efficient market is one that is said to fully incorporate
 all the available information into the prices. This means
 that, for an efficient market, it should be impossible to
@@ -491,7 +540,11 @@ efficiency in racing markets is specifically focussed on
 parimutuel markets. This is the most common market for
 racing in the United States as well as Hong Kong.
 Comparitively little exists for markets using a CDA such as
-Betfair.
+Betfair. This makes this report particularly interesting as
+a way to compare parimutuel markets with a CDA. It also
+means that the work done here is potentially has greater
+applicability to external financial markets, which typically
+use a form of CDA as their market mechanism.
 .NHD "Relationship of Exotic Bets" 4
 .PP
 A lack of market efficiency can be demonstrated by comparing
@@ -502,8 +555,8 @@ within one wager. Popular examples include the daily double,
 in which the first two winning horses of the day must be
 predicted correctly, and an exacta, where the first two
 horses of a race must be predicted in order. A parlay is
-similarly a wager of multiple outcomes, however can be
-constructed from multiple seperate bets with the winnings
+similarly a wager of multiple outcomes, is
+constructed from multiple separate bets with the winnings
 from earlier bets accumulated into future ones.
 .PP
 Certain exotic bets can be shown to have an equivalent
@@ -514,7 +567,17 @@ difference in a typical financial market may be considered
 an arbitrage opportunity as one would be able to buy at the
 low price and sell at the high price, guaranteeing a profit.
 Within parimutuel markets however this is not possible, as
-bets cannot be bought and sold at different prices.
+bets cannot be bought and sold at different prices. This is
+fundamentally similar to established options pricing theory.
+The payoff of an option can be shown to be replicated by
+purchasing a quantity of the underlying asset and a risk
+free asset.
+.[
+black scholes
+.]
+.[
+option pricing simplified
+.]
 .PP
 Ali's
 .[
@@ -561,11 +624,11 @@ favourite betting to be profitable. This indicates some
 level of
 .I "weak form"
 efficiency, however without the track take present (and
-betting habits remaining the same), it would be certainly
+betting habits remaining the same), it would certainly be
 impossible to describe the market as informationally
 efficient. Snyder also demonstrated that this bias exists
 among betting experts (or ``tipsters'') which makes it seem
-also unlikely that the market is
+unlikely that the market is
 .I "strong form"
 efficient.
 .PP
@@ -648,9 +711,8 @@ established. This is important as it is an expected market
 inaccuracy consistently found across the literature. A
 change in the bias could indicate different sub groups of
 bettors within horse racing with different utility
-estimates. The favourite-longshot bias can be shown by
-looking at the mean returns for horses grouped by odds.
-.PP
+estimates. 
+To look for this,
 I will plot the implied probabilities given by the odds
 against the true (observed) probabilities. This will be a
 clear indicator of accuracy, as these two values should be
@@ -787,7 +849,11 @@ race_id;Integer;Relational key.
 .PP
 I decided to use Python through Jupyter Lab to write and run
 my software as it is what I had the most experience with for
-statistical analysis.
+statistical analysis. Python also features extensive
+libraries for data analysis and statistics. Particularly
+useful in this project is the Pandas library, which provides
+a significant amount of functionality for working with
+structured data.
 .NHD "Data Structure and Statistics" 3
 .NHD "Pre-Processing" 4
 .PP
@@ -862,15 +928,133 @@ actually happening. Secondly, there is a major performance
 increase by writing the software in this way.
 .NHD "Naive Strategies" 4
 .NHD "Learning Strategy" 4
+.NHD "Graphing" 3
+.PP
+To plot my results, I used the program Gnuplot. Python comes
+with its own plotting utilities (in the form of Matplotlib),
+however I was not satisfied with their capabilities as I
+found it awkward to position elements to my liking. It was
+also difficult to produce a format easily embeddable within
+my document preparation system (Groff). The workflow of
+producing output datafiles in Python and then producing
+plots through Gnuplot in Jupyter was extremely
+straightforward.
 .NHD "Results, Analysis & Evaluation"
+.NHD "Initial Observations" 2
+.PP
+For the entire dataset, the volume traded appears to be
+roughly normally distributed about the mean implied
+probability of 0.5. The number of selections however is
+positively skew, with significantly more selections being
+given a lower implied chance of winning. This shows that
+most horses will be considered unlikely to win a race. More
+money is traded on a smaller proportion of horses with
+greater chances of winning.
+.PP
+An interesting observation are the somewhat frequent spikes
+in prices. These are all observed at the points in which the
+market tick size changes.
+.[
+betextrader
+.]
+The tick size is the difference between prices that are
+allowed to be offered. I have used the tick size to group
+selections based on their BSP, as the reported BSP is not
+the same as the actual price matched against.
+.FIGS ../output/plots/all-count-vol.ps 5i "Frequency of Count and Volume of BSP Values Across All Races"
+.PP
+The volumes per grouping tell a largely similar story.
+For each different grouping, the distributions are typically
+the same as per the whole dataset, except scaled by
+quantity. Distance, hour, location, and number of runners
+all fit this trend.
+.PP
+Race number becomes more positively skew as it increases.
+This shows that over the course of the racing day, bettors
+are more likely to trade on horses with a lower implied
+chance of winning. We can see this is not simply due to the
+odds being offered as the frequency plot remains almost
+exactly the same across all races.
+.PP
+The volume for race type is another outlier. Handicap
+races are massively positively skew while others tend to be
+negatively skew. Handicap races are by far the largest race
+type in the data set and so have a significant impact on the
+overall weighting. It could be the case that on a dataset
+without featuring handicap markets, volumes generally tend
+to be negatively skew, instead of symmetric.
+.PP
+For both total pre-play trade volume and overround, the
+volume of the market tends to shift towards being negatively
+skew as they increase. This trend is particularly pronounced
+for pre-play trade volume. As total trade volume increases,
+trade tends to center around horses with a greater chance of
+winning. It is so extreme that in the highest bracket of
+volume, well over 50% of trades are being made on selections
+with an implied probability of winning of over 50%. I
+believe that this is signifying an increase in professional
+trading activity, where traders try to scalp prices on
+popular horses for bigger races.
+.FIGS ../output/plots/groups-fl-vol.ps 8i "Frequency of Volume for BSP Values by Category"
+.PP
+Frequency follows the same trend for all categories except
+for pre-play trade volume. All other groups are
+positively skew, being scaled relative to their group size.
+For trade volume however, the frequency becomes more
+negatively skew as the total volume increases. This is
+similar to the previous observation for trade volume. As
+pre-play trade volume increases, the distribution of
+probabilities assigned to horses changes as well. Prices
+going down due is indicative of greater market condfidence
+in the favourite horses.
+.FIGS ../output/plots/groups-fl-count.ps 8i "Frequency of Count for BSP Values by Category"
 .NHD "Accuracy" 2
 .NHD "Favourite-Longshot Bias" 3
-
-.KF
-.PSPIC ../output/all-fl-mean.ps 8i
-.FT "Favourite Longshot Bias"
-.KE
 .PP
+If the favourite-longshot bias is present within this
+sample, I would expect to find that favourites win more
+often than implied by their given betting odds. Similarly,
+longshots should win less often than implied by their
+betting odds. From research done in American markets,
+.[
+Griffith 1949
+.]
+.[
+ali 1977
+.]
+I am expecting to find the favourite-longshot bias within my
+sample.
+.FIGS ../output/plots/all-fl.ps 5i "Win Rate Compared to BSP For All Races"
+.PP
+When observing the entire dataset, it is clear that the
+favourite-longshot bias is not present. The mean win rate
+closely tracks the expected win rate at all BSP values. If
+the favourite-longshot bias was present, the mean rate would
+appear greater than the expected win rate for low implied
+probabilities and lesser than for high implied
+probabilities.  Variance within the lower BSP values can be
+largely explained by them making up a representatively small
+part of the sample. This is a stark contrast from most
+previous research, with the only other example I know of a
+racing market not exhibiting this bias is the Hong Kong
+Jockey Club.
+.[
+exception risk preference
+.]
+I expect the primary reason for this difference to be the
+use of a CDA for price discovery, rather than a parimutuel
+system. The CDA is more open about its price discovery and
+its format is familiar to those with experience in financial
+markets. This could suggest that the composition of the
+Betfair Exchange market leaning further towards groups of
+insiders or professional bettors, rather than normal
+punters.
+.FIGS ../output/plots/groups-fl-mean.ps 8i "Win Rate Compared to Implied Probability by Category"
+.PP
+Similarly, for all categories it appears there is no sign of
+the favourite-longshot bias. They all have greater variance,
+but this is simply due to a smaller sample size.
+.NHD "Forecast Test Statistics" 3
 .NHD "Efficiency" 2
 .NHD "Legal, Social, Ethical & Professional Issues"
 .BP
@@ -882,10 +1066,16 @@ Similarity to stock market
 .BP
 legality of companies betting
 .NHD Conclusion
-.NHD "Future Work"
+.NHD "Future Work" 2
 .BP
 compare polling/other forecasting?
 .bp
+.XS
+List of Figures
+.XE
+.XS
+List of Tables
+.XE
 .XS
 References
 .XE

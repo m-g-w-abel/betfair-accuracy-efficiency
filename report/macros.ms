@@ -27,9 +27,12 @@ delim $$
 . IP "\fB\\$1\fP" 1i
 \(em \\$2
 ..
-.nr fig 1 1
-.de FT
+.nr fig 0 1
+.de FIGS
+. KS
+. PSPIC \\$1 \\$2
 . DS C
-. B "Figure \n[fig]: \\$1"
+. B "Figure \\n+[fig]: \\$3"
 . DE
+. KE
 ..

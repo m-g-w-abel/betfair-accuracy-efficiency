@@ -320,7 +320,7 @@
 
 %T Pari-Mutuel Local Pools
 %I Hong Kong Jockey Club
-%D 2026
+%D n.d.
 %Q Hong Kong Jockey Club
 %O Available at: https://special.hkjc.com/e-win/en-US/betting-info/racing/beginners-guide/local-pools/ [Accessed Wed Jul 08 2026]
 
@@ -366,6 +366,7 @@
 
 %T Betfair SP FAQ
 %I Betfair
+%D n.d.
 %Q Betfair
 %O Available at: https://promo.betfair.com/betfairsp/FAQs_detailedWorkings.html [Accessed Mon Jul 13 2026]
 
@@ -628,4 +629,32 @@
 %A Black, Fischer
 %A Scholes, Myron
 %D 1973
+
+%T WTLPE - WisdomTree low P/E index
+%O Available at: https://www.wisdomtree.com/us/indexes/WTLPE [Accessed Mon Jul 27 2026]
+
+%T The utility of wealth
+%V 60
+%N 2
+%I University of Chicago Press
+%P 151-158
+%J Journal of Political Economy
+%A Markowitz, Harry
+%D 1952
+
+%T Option pricing: a simplified approach
+%V 7
+%N 3
+%P 229-263
+%J Journal of Financial Economics
+%A Cox, John C.
+%A Ross, Stephen A.
+%A Rubinstein, Mark
+%D 1979-09-01
+
+%T Betfair Ticks & Offset Ticks
+%I BetexTrader
+%D n.d.
+%Q BetexTrader
+%O Available at: https://www.betextrader.com/manual/ticks--offset-ticks.htm [Accessed Thu Jul 30 2026]
 
