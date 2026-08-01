@@ -30,9 +30,13 @@ delim $$
 .nr fig 0 1
 .de FIGS
 . KS
-. PSPIC \\$1 \\$2
+. PSPIC ../output/plots/\\$1.ps \\$2
 . DS C
 . B "Figure \\n+[fig]: \\$3"
 . DE
 . KE
+..
+.de FN
+. nr *temp \\n[fig]\\$1
+\\n[*temp]\\$2
 ..

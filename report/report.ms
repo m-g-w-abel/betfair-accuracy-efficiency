@@ -292,15 +292,14 @@ developed a method for scoring estimates of probabilities
 now known as log-loss. This method has since become popular
 as a scoring mechanism for machine learning models as it
 highly punishes overconfidence in incorrect predictions. For
-a multiple class classification problem:
+a binary outcome:
 .EQ
-LL = - sum from t=1 to N o sub t log ( f sub t )
+LL = - 1 over N sum from t=1 to N o sub t log ( f sub t ) +
+( 1 - o sub t ) log ( 1 - f sub t )
 .EN
 where $f sub t$ is the forecast probability, $o sub t$ is
 the actual outcome ($0$ if did not happen or $1$ if did) and
-$N$ is the number of forecasts. A horse race only has one
-winner and so for a single race win market, it can be shown that
-$LL = - log ( f sub "winner" )$.
+$N$ is the number of forecasts.
 Log-loss has become incredibly popular as a cost function
 (function that scores prediction accuracy) for machine
 learning. Machine learning textbooks
@@ -313,14 +312,26 @@ murphy machine learning
 share that log-loss should be considered the standard cost
 function. Since log-loss easily supports binary outcomes, it
 can be applied in addition to Brier score as a measurement
-of accuracy for betting predictions. Because every
-non-winning horse contributes the same score of zero, it
-appears
-to me that Brier score is more appropriate for general
-ranking of horse race win forecasting as it incorporates
-more information from the losing horses. Brier score will be
-the primary metric I use to measure accuracy, but log-loss
-will be a useful secondary comparator.
+of accuracy for betting predictions.  Both Brier scores and
+log-loss will be useful in ranking the accuracy of markets.
+The primary difference between them is how harshly they rank
+confident incorrect guesses.
+.PP
+Skill scores are a way to measure forecast skill relative to
+a given baseline.
+.[
+murphy 1988
+.]
+These can be applied to both the Brier score and log-loss.
+.EQ
+SS = 1 - score over score sub {reference}
+.EN
+A skill score of zero indicates that the forecast is just as
+good as the baseline forecast. Conversely to the normal
+Brier score and log-loss, a higher skill score is an
+indication of better performance. Negative skill scores are
+worse than the reference and positive skill scores are
+better than the reference.
 .PP
 Wunderlich and Memmert
 .[
@@ -942,6 +953,15 @@ straightforward.
 .NHD "Results, Analysis & Evaluation"
 .NHD "Initial Observations" 2
 .PP
+For most of the groupings, trade volume follows the number
+of races as can be seen in Figure
+.FN +1 .
+This is of course different for the
+categorisations of volume (per race) and overround, which
+have been specifically broken up into 10 sections of equal
+size.
+.FIGS groups-count 8i "Number of Races and Trade Volume per Category"
+.PP
 For the entire dataset, the volume traded appears to be
 roughly normally distributed about the mean implied
 probability of 0.5. The number of selections however is
@@ -960,8 +980,9 @@ betextrader
 The tick size is the difference between prices that are
 allowed to be offered. I have used the tick size to group
 selections based on their BSP, as the reported BSP is not
-the same as the actual price matched against.
-.FIGS ../output/plots/all-count-vol.ps 5i "Frequency of Count and Volume of BSP Values Across All Races"
+the same as the actual price matched against. The tick sizes
+are used to adjust the frequency values in the plots.
+.FIGS all-count-vol 5i "Frequency of Count and Volume of BSP Values Across All Races"
 .PP
 The volumes per grouping tell a largely similar story.
 For each different grouping, the distributions are typically
@@ -995,7 +1016,7 @@ with an implied probability of winning of over 50%. I
 believe that this is signifying an increase in professional
 trading activity, where traders try to scalp prices on
 popular horses for bigger races.
-.FIGS ../output/plots/groups-fl-vol.ps 8i "Frequency of Volume for BSP Values by Category"
+.FIGS groups-fl-vol 8i "Frequency of Volume for BSP Values by Category"
 .PP
 Frequency follows the same trend for all categories except
 for pre-play trade volume. All other groups are
@@ -1007,7 +1028,7 @@ pre-play trade volume increases, the distribution of
 probabilities assigned to horses changes as well. Prices
 going down due is indicative of greater market condfidence
 in the favourite horses.
-.FIGS ../output/plots/groups-fl-count.ps 8i "Frequency of Count for BSP Values by Category"
+.FIGS groups-fl-count 8i "Frequency of Count for BSP Values by Category"
 .NHD "Accuracy" 2
 .NHD "Favourite-Longshot Bias" 3
 .PP
@@ -1024,17 +1045,26 @@ ali 1977
 .]
 I am expecting to find the favourite-longshot bias within my
 sample.
-.FIGS ../output/plots/all-fl.ps 5i "Win Rate Compared to BSP For All Races"
+.FIGS all-fl 5i "Win Rate Compared to BSP For All Races"
 .PP
 When observing the entire dataset, it is clear that the
 favourite-longshot bias is not present. The mean win rate
-closely tracks the expected win rate at all BSP values. If
-the favourite-longshot bias was present, the mean rate would
+closely tracks the expected win rate at all implied
+probabilities. If
+the favourite-longshot bias was present, the mean win rate would
 appear greater than the expected win rate for low implied
 probabilities and lesser than for high implied
-probabilities.  Variance within the lower BSP values can be
+probabilities.  Variance within the higher expected win
+rates can be
 largely explained by them making up a representatively small
-part of the sample. This is a stark contrast from most
+part of the sample.
+.FIGS groups-fl-mean 8i "Win Rate Compared to Implied Probability by Category"
+.PP
+Similarly, for all categories it appears there is no sign of
+the favourite-longshot bias. They all have greater variance,
+but this is simply due to a smaller sample size.
+.PP
+This is a stark contrast from most
 previous research, with the only other example I know of a
 racing market not exhibiting this bias is the Hong Kong
 Jockey Club.
@@ -1043,18 +1073,127 @@ exception risk preference
 .]
 I expect the primary reason for this difference to be the
 use of a CDA for price discovery, rather than a parimutuel
-system. The CDA is more open about its price discovery and
+system. The CDA is encourages greater price discovery and
 its format is familiar to those with experience in financial
 markets. This could suggest that the composition of the
 Betfair Exchange market leaning further towards groups of
 insiders or professional bettors, rather than normal
 punters.
-.FIGS ../output/plots/groups-fl-mean.ps 8i "Win Rate Compared to Implied Probability by Category"
 .PP
-Similarly, for all categories it appears there is no sign of
-the favourite-longshot bias. They all have greater variance,
-but this is simply due to a smaller sample size.
+If this is the case, then there may well exist a
+favourite-longshot bias in the odds provided by normal UK
+sportbooks or tote operators. Typically, this would be an
+arbitrage opportunity as the two markets are offering
+differing prices on the same outcome. There are however a
+few points that negate any usefulness of this arbitrage for
+someone attempting to exploit it. First of all, traditional
+sportsbooks do not allow a bettor to lay a bet which is
+typically necessary for an arbitrage opportunity. You could
+instead bet on all other winning outcomes to replicate the
+lay bet, but this will encounter the next problem. Bookmaker
+overround is probably far too significant to overcome,
+requiring the bettor to have an edge of well over 20% to
+actually make any money. Betting on multiple selections
+causes the impact from overround to accumulate. The most
+signficant issue is not to do with the numbers, instead it
+is the fact that almost all bookmakers will simply ban you
+from using their service for attempting to do this.
 .NHD "Forecast Test Statistics" 3
+.PP
+To determine the test statistics, the statistic is
+determined first for each individual race and then averaged
+across the whole grouping. This is done as we are less
+interested in the score as determined per runner as we are
+per race. This is because each runner is not an isolated
+event, and is instead packaged within a race. Organising by
+race prevents extra external factors from affecting the
+results. For the data set as a whole, the Brier score is
+determined to be 0.0951 and the log-loss is 0.3167. Skill
+scores can be used to show that both of these metrics are
+better than randomly guessing the likelihood of a horse
+winning a race.
+.FIGS all_ss_random 5i "Skill Scores of Random Predictions Compared to Market Predictions"
+.PP
+Figure \n[fig] compares different rates of estimating the
+probability of a horse winning. At 1, the model predicts
+every horse to win every race with a 100% chance and at 0 it
+predicts every horse to not win with a 100% chance. The
+comparison makes the differences between Brier and log-loss
+extremely clear, as log-loss drops sharply at higher
+estimated probabilities due to its greater punishment of
+incorrect guesses. Both of these scores show that the market
+performs better than random.
+.PP
+I would expect the skill scores to become greater for groups
+of larger sizes. This is because the larger pool would
+provide more data for for bettors to use to make predictions
+with. The sizes of the groups can be found in Figure
+.FN +1 .
+It would also make sense for some particularly small groups
+to have outlying skill scores as they will be more
+susceptible to variance.
+.PP
+To identify accuracy within the different groupings, brier
+and log-loss are calculated the same way as before,
+accounting for selections within races.
+.FIGS groups-acc 8i "Brier and Log-loss Skill Scores by Category"
+.PP
+Throughout every category, both skill scores are largely
+similar. Figure
+.FN
+compares the sill scores for every category.
+There are a few occasions where the scores conflict
+and one is negative while the other positive. In all
+instances of this, the skill scores are both very close to
+zero. The difference will be due to slight differences in
+the the distribution of skill scores as seen in Figure 
+.FN -2 .
+.PP
+Some skill scores appear to be correlated with the size of
+the categories or the total trade volume. (Figure
+.FN -7 ).
+Categories that do appear correlated are: race number,
+distance, hour, and location. Race number appears to have
+the skill scores negatively correlated with volume, as does
+hour. However, distance and location have skill scores that
+positively correlate with volume. The contrast between these
+categories shows that volume can not necessarily be used as
+an indicator of market accuracy.
+.PP
+Other categories appear to have skill scores unrelated to
+the relative volume or race count.  The prime example is
+number of runners; skill scores increase as the number of
+runners does. This behaviour is to be expected because of
+our test statistics. A greater number of selections in a
+race means that the average probability estimate will
+decrease and the number of non winning horses increases.
+Number of runners has the greatest range of skill score
+values and appears to be the most significant factor in
+determining the accuracy of the markets by these metrics.
+.PP
+Race trade volume and overround both exhibit a behaviour of
+having low or negative skill score before sharply rising at
+the high end of the categories. Overround is a
+representation of the total probability of prices given in
+the market. For an overround of 1, all prices add up to a
+total probability of one event occuring being 100%.
+Odds offered by traditional bookmakers typically have an
+overround much greater than one, this is the margin that
+they make. Because of this, I would have expected the
+accuracy for overround to peak around 1, as at higher and
+lower values there are more prices which are explicitly
+wrong. The results here contradict that expectation. Trade
+volume per race is mostly a measure of race popularity, and
+so increased accuracy for the greater trade volumes makes
+sense. There is more money in the market and probably a
+greater proportion of informed bettors.
+.PP
+The only category not mentioned thus far is race type. There
+seems to be no relationship between the race type and
+accuracy. Size and volume of the groups does not impact the
+accuracy here, where handicap races (by and far the most
+popular) have a similar score to handicap hurdles or nursery
+races.
 .NHD "Efficiency" 2
 .NHD "Legal, Social, Ethical & Professional Issues"
 .BP
@@ -1069,6 +1208,8 @@ legality of companies betting
 .NHD "Future Work" 2
 .BP
 compare polling/other forecasting?
+.BP
+compare betfair tote/bsp values from just bsp bets
 .bp
 .XS
 List of Figures
