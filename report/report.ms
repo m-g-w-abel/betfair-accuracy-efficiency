@@ -794,6 +794,27 @@ data, it intends to demonstrate a lack of
 .I "weak form"
 efficiency.
 .NHD "Implementation"
+.PP
+In this chapter, I will discuss the process for developing
+the software used to come to my results.
+.PP
+I decided to use Python through Jupyter Lab to write and run
+my software as it is what I had the most experience with for
+statistical analysis. Python also features extensive
+libraries for data analysis and statistics. Particularly
+useful in this project is the Pandas library, which provides
+a significant amount of functionality for working with
+structured data.
+.PP
+To plot my results, I used the program Gnuplot. Python comes
+with its own plotting utilities (in the form of Matplotlib),
+however I was not satisfied with their capabilities as I
+found it awkward to position elements to my liking. It was
+also difficult to produce a format easily embeddable within
+my document preparation system (Groff). The workflow of
+producing output datafiles in Python and then producing
+plots through Gnuplot in Jupyter was extremely
+straightforward.
 .NHD "Data Acquisition" 2
 .PP
 I produced a Python script to automatically download all of
@@ -804,13 +825,28 @@ has already obtained so it can easily update the existing
 database. As well as this, it automatically slows down when
 rate limited to ensure that all files are downloaded.
 .PP
-Another script transforms the flat file structure into a
-relational one. The relational structure avoids duplicating
-data and keeps unrelated information separate.  This data is
-formatted into three different tables: events, races and,
-runners.
+After downloading, the data is preprocessed into a format
+that makes it easier to use for my purposes. This involves
+transforming the flat file structure into a relational one,
+separating unrelated data. Entries for some columns need
+altering. Locations need to be changed as the format for
+location changes at one point in the files, moving from
+truncated names to full location names. Some selection names
+erroneously have their runner number included and so this is
+removed. Distances are given as a string format containing
+miles and furlongs and so are transformed to a single
+integer representing the number of furlongs.
+.PP
+Win and place data are in their own separate files
+originally and so must be joined together in order to use
+both sets of data. The script identifies matching entries in
+both sets of files using the race time and selection ID
+which is a unique pairing. This enables the place odds and
+win/lose result to be included within the dataset.
+.PP
+The result of this processing is 3 binary data files using
+the structure found in tables 1, 2 and 3.
 .KS
-.NHD Events 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -820,9 +856,9 @@ event_id;Integer;Unique identifier provided by Betfair
 location;String;
 event_date;Datetime;
 .TE
+.TABLE "Events Structure"
 .KE
 .KS
-.NHD Races 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -833,6 +869,7 @@ race_type;String;T{
 Indicates the format of the race: handicap, hurdles, chase,
 etc.
 T}
+place_n;Integer;Number of places for this race.
 race_time;Datetime;
 distance_f;Integer;Furlongs are one eigth of a mile long.
 race_no;Integer;T{
@@ -840,9 +877,9 @@ Races are given numbers indicating their sequence position within an event.
 T}
 event_id;Integer;Relational key.
 .TE
+.TABLE "Races Structure"
 .KE
 .KS
-.NHD Runners 3
 .TS
 tab(;) allbox;
 lb lb lb
@@ -853,7 +890,9 @@ This identifier is unique per horse, not per entry.
 T}
 selection_name;String;
 win_lose;Boolean;Win=True, Lose=False
+place_win_lose;Boolean;
 bsp;Float64;Betfair Starting Price
+place_bsp;Float64;
 implied_odds;Float64;1/BSP
 ppwap;Float32;Pre-play weighted average price.
 morningwap;Float32;Weighted average price of bets before 11AM GMT
@@ -866,22 +905,15 @@ pptradedvol;Float32;Trade volume before the off
 iptradedvol;Float32;Trade volume after the off
 race_id;Integer;Relational key.
 .TE
+.TABLE "Runners Structure"
 .KE
-.NHD "Software Development" 2
-.PP
-I decided to use Python through Jupyter Lab to write and run
-my software as it is what I had the most experience with for
-statistical analysis. Python also features extensive
-libraries for data analysis and statistics. Particularly
-useful in this project is the Pandas library, which provides
-a significant amount of functionality for working with
-structured data.
-.NHD "Data Structure and Statistics" 3
-.NHD "Pre-Processing" 4
+.NHD "Pre-Processing" 2
 .PP
 I pre-processed my data to include some more fields that
 would be useful. Pre-processing fields like this means that
-the calculations do not need to be repeated later on.
+the calculations do not need to be repeated later on. For a
+dataset as large as this, this is very important and saves a
+significant amount of processing time.
 .PP
 The first field to be added was a normalised probability
 field. This is useful as the implied odds given by the
@@ -903,29 +935,50 @@ score and Log-Loss. This is particularly useful as it means
 that to determine the scores for a certain subset of races,
 they can simply be summated using the groups generated in
 the next section.
-.NHD "Categorisation" 4
 .PP
-Given the available data from my dataset I decided upon a
-list of ways to categorise the horse races: race number,
-distance, hour of day, pre-play trade volume, race type
-(handicap, hurdles, etc.), location, number of runners and,
-overround. To do this I produced a list containing these
-different classifications of races created using the
-.ft 6
-groupby
-.ft
-method in Pandas. The
-.ft 6
-groupby
-.ft
-method makes it easy to perform aggregate calculations per
-group created through the method. This means that a function
-such as
-.ft 6
-sum
-.ft
-will be ran per group, instead of for all data in the
-DataFrame.
+Returns of a single unit bet are also pre-calculated. The
+return is simply 0 if the runner did not win or the BSP if
+it did. This is useful for the testing of betting strategies
+later.
+.NHD "Categorisation" 3
+.PP
+All categories are assigned as columns to the data so that
+they can be simply referred to by name later on. This makes
+it easy to group the data appropriately using the groupby or
+pivot_table functions later. A list of categories holds the
+name of every category as well as a filter for which groups
+should be observed. This filter is necessary to remove small
+groups that do not provide a lot of data or to make it
+easier to analyse categories with a particularly large
+number of groupings.
+.PP
+The groupby and pivot_table functions make it simple to
+perform aggregate calculations per group defined this way.
+Groupby enables an function to be performed for every group
+of the category, such as summing the returns of bets.
+Similarly pivot_table enables this but with two different
+grouping functions. This is useful when groups need to
+perform calculations over a range of values, such as date or
+BSP.
+.NHD "Mean Returns by Implied Probability" 3
+.PP
+Runners are grouped by BSP values and the mean win rate for
+each value is determined. BSP values given by the dataset
+are continuous instead of being representative of the tick
+sizes available using the exchange and so they are first
+calibrated to align with the closest actual trade value
+possible. For each different BSP value, the mean win rate,
+the number of observations and the total trade volume are
+recorded. To make the graph clearer, a small rolling average
+of 5 ticks is applied. When graphed, the tick size is taken
+into account so that wider groups are not misrepresented as
+being more popular.
+.NHD "Test Statistics" 3
+.PP
+To calculate the Brier and log-loss scores, runners do not
+need to be grouped in two different ways. The scores can
+simply be calculated as an aggregate of the whole dataset
+and per category grouping.
 .NHD "Trading Strategies" 3
 .PP
 Trading strategies are implemented using a system in which
@@ -948,19 +1001,29 @@ the readability of the code as the need for looping is
 removed. The code is much more representative of what is
 actually happening. Secondly, there is a major performance
 increase by writing the software in this way.
-.NHD "Naive Strategies" 4
-.NHD "Learning Strategy" 4
-.NHD "Graphing" 3
 .PP
-To plot my results, I used the program Gnuplot. Python comes
-with its own plotting utilities (in the form of Matplotlib),
-however I was not satisfied with their capabilities as I
-found it awkward to position elements to my liking. It was
-also difficult to produce a format easily embeddable within
-my document preparation system (Groff). The workflow of
-producing output datafiles in Python and then producing
-plots through Gnuplot in Jupyter was extremely
-straightforward.
+The simple strategies naturally have simple implementations.
+Every favourite is identified (this is actually
+precalculated to save time) and bet on. Either a constant
+single unit, or for the case of the hedging strategy, the
+inverse of the BSP.
+.PP
+The more advanced strategy has a more complex
+implementation. First of all, all races without 2 or 3
+places are discarded as determining the Harville odds for
+any more than 3 places becomes significantly more complex.
+This is not a major issue as less than 1% of races in the
+data pay out more than 3 places. The place odds are
+determined by using the Harville method to produce the odds
+of the horse placing second or third and adding this to the
+probability of the horse winning. The Kelly growth criterion
+is then calculated to determine the percentage of current
+wealth to bet and the bet slip is produced.
+.PP
+After running the strategies, the profit and loss for every
+bet is available. These are aggregated per day and the
+Sharpe Ratio is applied. To convert to an annualised ratio,
+the result is multiplied by @sqrt 365@.
 .NHD "Results, Analysis & Evaluation"
 .NHD "Initial Observations" 2
 .PP
@@ -1544,15 +1607,16 @@ bolton 1986
 which could help.
 .bp
 .XS
-List of Figures
-.XE
-.XS
-List of Tables
-.XE
-.XS
 References
 .XE
 .[
 $LIST$
 .]
 .TC
+.bp
+.SHD "List of Figures"
+.LP
+.FIGLIST
+.SHD "List of Tables"
+.LP
+.TABLIST

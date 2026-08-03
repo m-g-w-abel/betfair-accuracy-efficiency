@@ -35,8 +35,24 @@ delim @@
 . B "Figure \\n+[fig]: \\$3"
 . DE
 . KE
+. da FIGLIST
+. ta \n(.luR
+Figure \\n[fig]: \\$3\a\\n%
+. br
+. da
 ..
 .de FN
 . nr *temp \\n[fig]\\$1
 \\n[*temp]\\$2
+..
+.nr tab 0 1
+.de TABLE
+. CD
+. B "Table \\n+[tab]: \\$1"
+. DE
+. da TABLIST
+. ta \n(.luR
+Table \\n[tab]: \\$1\a\\n%
+. br
+. da
 ..
