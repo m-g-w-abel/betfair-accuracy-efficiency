@@ -1441,11 +1441,107 @@ to be recalibrated to account for the different environment.
 Additionally, the availability of the market could be
 completely jeapordised if events are banned.
 .NHD Conclusion
+.PP
+There has been a surge in popularity of prediction markets
+over the last few years as services like Polymarket and
+Kalshi have become available. The recent legalisation of
+online sports betting in the US has also contributed to
+this.
+.PP
+This report is largely based on prior research in horse
+racing markets. It surveyed the literature for determination
+of accuracy and efficiency in those markets. This report
+contributes novel research by first of all looking at a CDA
+market instead of a parimutuel market and secondly by
+decomposing the market into distinct sub-groups to observe.
+Beyond simply determining whether the Betfair exchange can
+be considered accurate or efficient, I have attempted to
+find the relative contributions of different groups of races
+to this accuracy and efficiency.
+.PP
+Accuracy was measured in two ways. The first method compared
+betting prices to the expected win rates implied by the
+odds. Unlike existing research in the American markets,
+.[
+griffith 1949
+.]
+.[
+ali 1977
+.]
+.[
+kanto 1992
+.]
+I found the implied odds to closely match the true observed
+odds. For the whole dataset and when decomposed, there was
+not  any favourite-longshot bias and appeared to be largely
+accurate. The second measure of accuracy was two skill
+scores: Brier and log-loss. Initial measurements for the
+entire dataset demonstrated that the market was more
+accurate than randomly guessing winners. When decomposing
+into different categorisations of markets, it was found that
+the number of runners in a race was the most significant
+factor for market accuracy.
+.PP
+In an attempt to measure efficiency, three different betting
+strategies were implemented. Two of them were naive
+favourite-betting strategies and the third was a method
+adapted from Hausch et al
+.[.
+hausch 1981
+.]
+which attempts to derive odds for a horse placing from its
+win price. While the strategies appeared to be somewhat
+successful when used across all races, it was determined
+that they did not demonstrate a lack of efficiency within
+the market. Similarly, when applied to the different
+categorisations, there was no conclusive evidence of
+categorisation affecting the efficiency of the market.
 .NHD "Future Work" 2
-.BP
-compare polling/other forecasting?
-.BP
-compare betfair tote/bsp values from just bsp bets
+.PP
+To further the discovery of market accuracy, it would be
+beneficial to compare the use of other forecasting methods
+to the betting odds. Other methods could include polling and
+model based forecasting. This would help to establish
+whether the implied odds given by the markets are actually
+the best forecast available. Other forecasting models may
+also help to establish a lack of market efficiency, if
+another forecast is able to provide better odds estimates
+than the market then a strategy could be developed similar
+to the one used in this report but with the market win odds
+substituted for the forecast odds. This would likely be
+identifying a different form of efficiency however, as
+information from outside historical prices would be included
+in the strategy.
+.PP
+This report focusses soley on BSP data from the Betfair
+exchange, but betfair also runs its own sportsbook and tote
+betting facilities. It may be beneficial to compare the
+results found here to data obtained from those alternate
+markets. That would enable a direct comparison of market
+types as most existing research has been done in the US and
+on a different set of races.
+.PP
+It would be worth exploring different parameters for the
+strategies used or different strategies altogether. While I
+did experiment with different settings for the strategies, I
+have only presented the state I determined to be the best
+performing through manual testing. It may be possible that
+through a more thorough examination of the different
+parameters available that the strategy would succeed in
+demonstrating a lack of place market efficiency.
+Additionally, improvements on the strategy I adapted have
+been published
+.[
+Hausch 1985
+.]
+.[
+lo 1995
+.]
+and other strategies have been developed
+.[
+bolton 1986
+.]
+which could help.
 .bp
 .XS
 List of Figures
