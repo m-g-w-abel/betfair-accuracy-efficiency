@@ -654,7 +654,17 @@ data and so attempts to demonstrate a lack of
 .I "weak form"
 efficiency.  They argued that their system successfully
 exploited a market inefficiency and was able to generate a
-consistent profit. With a follow up paper, Hausch and Ziemba
+consistent profit. To do this, they derived estimated place
+and show probabilities from the implied win probabilities
+given by the win market using Harville's
+.[
+#
+harville 1973
+.]
+method. The win market is assumed to be informationally
+efficient. This allows them to profit through mispricing of
+show and place odds relative to the win market.
+With a follow up paper, Hausch and Ziemba
 .[
 #
 hausch 1985
@@ -1195,6 +1205,110 @@ accuracy here, where handicap races (by and far the most
 popular) have a similar score to handicap hurdles or nursery
 races.
 .NHD "Efficiency" 2
+.PP
+Three betting strategies were trialled in an attempt to
+exploit inefficiency within the market. The first two
+strategies bet on the favourite horse for every race. The
+first one simply bets one unit on every favourite, while the
+second bets the inverse of the starting price. The second
+strategy makes a weak attempt to ``hedge'' by betting lower
+when it is apparent that the probability of winning the bet
+is lower. The third strategy is adapted from the technique
+used by Hausch et al
+.[. (
+#
+hausch 1981
+.]).
+.FIGS "all-strats" 8i "Results of Betting Strategies Applied to All Races"
+.PP
+The results of these strategies when applied to all races
+can be seen in Figure
+.FN +0 .
+When hedging, the resulting profit stays exactly at zero.
+This is to be expected in an efficient market as the
+expected value of the profit of any bet hedged this way
+should be zero. The favourite betting strategy at first
+glance appears to actually provide a profitable system.
+However, the profit here is actually realtively small
+compared to the number of wagers. Given that over 170,000
+bets have been placed, the final result is a return of less
+than 1%. While technically a profitable strategy, it is
+essentially worthless due to the low returns. A return this
+low is not substantial enough to claim a lack of efficiency
+in the market.
+.PP
+The more advanced strategy looks promising from the outset.
+Over the time period, it is able to generate a total profit
+over over 1000 times the initial wealth of the bettor. This
+of course is not representative of the results that would
+truly be earned, as a bettor will not be able to place large
+bets at favourable prices without moving the market to an
+unfavourable position. The Sharpe ratio
+.[
+sharpe 1994
+.]
+can be applied to establish a metric of strategy
+performance. For the entire dataset, the annualised Sharpe
+ratio of the more advanced strategy is 0.9679. This is
+generally considered to be a somewhat weak score. Investors
+typically believe a Sharpe ratio greater than 1 to be
+adequate and greater than 2 to be strong. The reason the
+score is so low is because the variance of the returns is
+too great, and so there is a lot of risk in the investment.
+While it seems to perform well in the test here, it is
+likely to have significant downward periods (as exhibited in
+Figure
+.FN +0 )
+and so is unappealing.
+.FIGS "groups-fav-bet" 8i "Favourite Betting Strategy by Category"
+.PP
+When applying the two basic strategies to the different
+categorisations, no group appears to perform particularly
+well or poorly. In Figure 
+.FN
+the results for the favourite betting strategy are shown.
+Unlike the accuracy test statistics, no trends appear to
+emerge. From this strategy, no particular conclusions can be
+drawn.
+.FIGS "groups-hedge-bet" 8i "Favourite Hedging Strategy by Category"
+.PP
+The favourite hedging strategy is the same as the favourite
+betting strategy in that no patterns can be found in the
+results.
+.FIGS "groups-harville-bet" 8i "Advanced Betting Strategy by Category"
+.PP
+The advanced betting strategy has a wide variation in
+successfulness. Figure
+.FN
+shows the cumulative returns as a multiple of initial
+wealth. On first inspection, the two most successful
+implementations of this strategy are for races at 14:00 and
+races with a total trade volume between £508,813
+and £580,970. The least successful was for NHF (National
+Hunt Flat) races. Again, there does not appear to be much of
+a link between the different groups and the performance of
+strategy. The immediate performance of the strategy here is
+not sufficient to deem any particular grouping of races to
+have an inefficient market.
+.FIGS "groups-sharpe" 8i "Sharpe Ratio by Category for Advanced Strategy"
+.PP
+Sharpe ratios as displayed in Figure
+.FN
+help to finalise the picture. It is pretty clear that there
+is no correlation between the groupings and the performance
+of the strategy. This is true for all categories except for
+race number, which appears to follow a similar trend as the
+results for accuracy (see Figure
+.FN -5 )
+albeit somewhat exaggerated. While some of the Sharpe ratios
+are high, I am still reluctant to identify any group as
+being inefficient. Even with high Sharpe ratios, some groups
+fail to deliver impressive returns. Races with 5 horses and
+Novice Handicap Chases have some of the highest Sharpe
+ratios and yet the actual profit derived from these groups
+is very limited. Given the variance and lack of
+correlation, I think it is more likely that these results
+have come about due to random chance.
 .NHD "Legal, Social, Ethical & Professional Issues"
 .BP
 Use of live animals?
