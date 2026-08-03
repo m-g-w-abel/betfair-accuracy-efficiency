@@ -19,6 +19,7 @@ results achieved and conclusion.
 .AE
 .SH
 .SHD Acronyms
+.GE BHA "British Horseracing Authority"
 .GE BSP "Betfair Starting Price"
 .GE CDA "Continuous Double Auction"
 .GE CLOB "Central Limit Order Book"
@@ -262,9 +263,9 @@ estimated probability and the actual outcome. Formally:
 .EQ
 BS = 1 over N sum from t=1 to N (f sub t - o sub t ) sup 2
 .EN
-where $f sub t$ is the forecast probability, $o sub t$ is
-the actual outcome ($0$ if did not happen or $1$ if did) and
-$N$ is the number of forecasts.
+where @f sub t@ is the forecast probability, @o sub t@ is
+the actual outcome (@0@ if did not happen or @1@ if did) and
+@N@ is the number of forecasts.
 In this
 system, a perfect forecast is given a score of zero. This
 can only be achieved if the forecast guesses with 100%
@@ -297,9 +298,9 @@ a binary outcome:
 LL = - 1 over N sum from t=1 to N o sub t log ( f sub t ) +
 ( 1 - o sub t ) log ( 1 - f sub t )
 .EN
-where $f sub t$ is the forecast probability, $o sub t$ is
-the actual outcome ($0$ if did not happen or $1$ if did) and
-$N$ is the number of forecasts.
+where @f sub t@ is the forecast probability, @o sub t@ is
+the actual outcome (@0@ if did not happen or @1@ if did) and
+@N@ is the number of forecasts.
 Log-loss has become incredibly popular as a cost function
 (function that scores prediction accuracy) for machine
 learning. Machine learning textbooks
@@ -778,9 +779,9 @@ that the favourite horse has won and take this value to be
 the true probability of the favourite horse winning. The
 probability will be plugged into the Kelly Criterion in
 order to determine the size of a bet. That is:
-$f* = ( bp - q ) / b$
-where $f*$ is the fraction of wealth to bet, $p$ is the
-likelihood of the bet winning, $q$ is $1-p$ and $b$ is the
+@f* = ( bp - q ) / b@
+where @f*@ is the fraction of wealth to bet, @p@ is the
+likelihood of the bet winning, @q@ is @1-p@ and @b@ is the
 proportion of wealth won if successful.
 .[
 Thorp 2006
@@ -1310,14 +1311,135 @@ is very limited. Given the variance and lack of
 correlation, I think it is more likely that these results
 have come about due to random chance.
 .NHD "Legal, Social, Ethical & Professional Issues"
-.BP
-Use of live animals?
-.BP
-Profit Derived from gambling losers
-.BP
-Similarity to stock market
-.BP
-legality of companies betting
+.NHD "Incentives & Insider Trading" 2
+.PP
+The availability of prediction markets for certain events
+can incentivise negative acts that otherwise would not be
+undertaken. At the Super Bowl in 2021, a streaker reportedly
+bet $50,000 that there would be a streaker.
+.[
+super bowl
+.]
+The availability of perceived easy money from this bet
+directly encouraged encouraged a man to engage in illegal
+behaviour. This was even rationalised (somewhat ironically)
+as an arbitrage opportunity. Since the cost of streaking is
+fixed (ticket costs, transport and fines), any large enough
+bet placed will result in a guaranteed profit assuming the
+bettor is able to successfully streak.
+.PP
+In theory, a prediction market could be engineered in such a
+way as to discourage this. If information was efficiently
+priced into the market, the possibility of someone going out
+of their way to streak for market gain would be reflected
+appropriately in the price. As with all prediction markets,
+money talks and a large bet on an action signals strong
+insider information to the market. It is likely that markets
+for streakers are now more aware of this possibility and are
+making sure to price it in.
+.PP
+Prediction markets do not just incentivise bettors to take
+actions that impact the outcome of events. They also
+incentivise insiders to bet large amounts on outcomes they
+know beforehand. For the purpose of the market, this may be
+considered good as it pushes the market towards greater
+accuracy. In many scenarios however, this information is
+confidential or sensitive. A U.S. soldier was charged with
+using classified information about the capture of
+Nicol\['a]s Maduro in Venzuela.
+.[
+soldier prediction market
+.]
+to bet using Polymarket.
+In the past, sale of state secrets would have to be done
+face to face with a foreign agent. Now instead, soldiers are
+incentivised to sell out their country publicly.
+.PP
+Attempts to fix horse races are taken very seriously by the
+BHA. A 2023 conspiracy to fix a single race by stopping a horse
+from achieving its best possible place resulted in a 9 year
+disqualification for the jockey and a 12 year exclusion
+order for the owner.
+.[
+dylan kitts
+.]
+Investigations and punishments like these enable horse
+racing markets to operate in an environment that is
+generally believed to be free from corruption. This is
+however relevant to a very small portion of highly regulated
+prediction markets within the UK. When prediction markets
+are expanded to include all manner of events, specialised
+investigation boards are impossible to create. It becomes
+the job of the courts to regulate behaviour, rather than the
+industry being able to self regulate.
+.NHD "Gambling" 2
+.PP
+The gambling industry profits from habitual gamblers with
+addictive personalities. For many people, gambling can
+become a significant problem. Most gamblers are essentially
+guaranteed to lose money in the long run, causing financial
+harm if not managed properly. A bookkeeper fundamentally
+makes money by preying on peoples' hopes of winning. By
+engaging with gambling markets, you help to enable problem
+gambling. Gambling markets are a zero sum game, to succeed
+you must take money from someone else. By implementing a
+successful strategy, you are more than likely directly
+taking money from gamblers with no thought out system or
+genuine racing model.
+.PP
+Gambling markets look bad when framed this way, but
+fundamentally they operate extremely similarly to
+traditional financial markets. Huge amounts of people use
+the stock market regularly to invest in companies they
+believe will be successful, but the outcome is essentially
+the same: a gamble. The primary difference is the social
+framing of the two. Big established companies and investors
+are seen as sensible and reasonable while gamblers are
+considered unreasonable (and usually are). Of course, the
+engagement that people have with these two markets is very
+different, even if they operate similarly. When investing in
+stocks and shares, most people typically invest in a fund
+curated by an institutional investor. This is not guaranteed
+to increases in value by any means, but historically has
+proven to be successful for most average people. If an
+investor begins to choose individual stocks then they become
+less likely to succeed. This is equivalent to typical
+gambling practices, where the bettor chooses each individual
+horse to bet on.
+.PP
+Some people would consider a ban on gambling to be a good
+thing, but it would be safe to say that not many would agree
+with a ban on purchasing individual stocks and shares. I
+believe that to be morally consistent, both of these markets
+should be viewed in the same manner.
+.NHD "Animal Welfare" 2
+.PP
+Horse races and some other popular prediction markets (such
+as greyhound racing) rely on the use of live animals. In
+some cases the animals may become seriously injured or die.
+Steps have been taken to reduce this number over time. From
+2009 to 2025, incidents of race fatality per 1,000 starts
+fell from 2.00 to 1.07 in the US.
+.[
+jockey club injury database
+.]
+In the UK, Aintree racecourse announced in 2013 significant
+changes to the prestigious Grand National race in the name
+of improving safety.
+.[
+scargill racing post
+.]
+The maximum number of runners was decreased from 40 to 34.
+As well as this, multiple course features were altered
+including the lowering of some fences.
+.PP
+Because of the associated danger, some animal rights groups
+have attempted to improve conditions for animals or outright
+ban the events from taking place at all. Any changes imposed
+may have significant impacts on the markets, as models need
+to be recalibrated to account for the different environment.
+Additionally, the availability of the market could be
+completely jeapordised if events are banned.
 .NHD Conclusion
 .NHD "Future Work" 2
 .BP

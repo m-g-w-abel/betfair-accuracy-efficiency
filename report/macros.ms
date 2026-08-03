@@ -10,7 +10,7 @@ short-label "(D.y|D)"
 bracket-label " (" ")" "; "
 .R2
 .EQ
-delim $$
+delim @@
 .EN
 .de BP
 . IP \[bu]
