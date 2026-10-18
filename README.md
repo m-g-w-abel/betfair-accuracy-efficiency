@@ -44,9 +44,9 @@ Unlike most prior research, which studies pari-mutuel (pool) markets, this looks
 
 ```
 notebooks/
-  01_download_betfair_sp.ipynb      download the daily BSP files from Betfair's archive
-  02_build_uk_dataset.ipynb         clean and normalise them into events / races / runners tables
-  03_scrape_hkjc_dataset.ipynb      scrape the Hong Kong Jockey Club comparison dataset
+  01_download_betfair_data.ipynb    download the daily BSP files from Betfair's archive
+  02_scrape_hkjc_data.ipynb         scrape the Hong Kong Jockey Club comparison dataset
+  03_build_uk_dataset.ipynb         clean and normalise the BSP files into events / races / runners tables
   04_accuracy_and_efficiency.ipynb  calibration, skill scores and strategy backtests
 figures/
   make_figures.gp                   draws every figure in the report from results/tables
@@ -63,8 +63,8 @@ data/                               raw and processed data (not committed; creat
 ### Pipeline
 
 ```
-01 download ──► 02 build dataset ──► 04 analysis ──► results/tables ──► make_figures.gp ──► report
-03 HKJC scrape (comparison dataset, optional)
+01 download ──► 03 build dataset ──► 04 analysis ──► results/tables ──► make_figures.gp ──► report
+02 HKJC scrape (comparison dataset, optional)
 ```
 
 ## Reproducing the results
@@ -75,8 +75,8 @@ data/                               raw and processed data (not committed; creat
 pip install -r requirements.txt
 
 # 1. Get and prepare the data (the download takes a while: one win and one place file per day since 2008)
-jupyter nbconvert --to notebook --execute --inplace notebooks/01_download_betfair_sp.ipynb
-jupyter nbconvert --to notebook --execute --inplace notebooks/02_build_uk_dataset.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/01_download_betfair_data.ipynb
+jupyter nbconvert --to notebook --execute --inplace notebooks/03_build_uk_dataset.ipynb
 
 # 2. Run the analysis
 jupyter nbconvert --to notebook --execute --inplace notebooks/04_accuracy_and_efficiency.ipynb

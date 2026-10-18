@@ -1,0 +1,10 @@
+# Raw and processed data (downloaded / built by notebooks 01–03)
+data/
+
+# Report build artefacts
+report/*.ps
+report/*.log
+
+# Python / Jupyter
+.ipynb_checkpoints/
+__pycache__/
