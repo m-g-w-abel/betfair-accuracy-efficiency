@@ -30,7 +30,8 @@ developed in this report and examined.
 A novel approach is taken with the decomposition of the
 market data into multiple market classification schemes. The
 market examined utilises a continuous double auctions,
-rather than being parimutuel as is typical in horse racing.
+rather than the parimutuel market typically examined in the
+prevailing research.
 It is found that, in
 general, the UK horse racing exchange Betfair can be
 considered accurate in odds generation. Certain factors
@@ -48,7 +49,7 @@ groups.
 .GE BSP "Betfair Starting Price"
 .GE CDA "Continuous Double Auction"
 .GE CLOB "Central Limit Order Book"
-.GE DPM "Dynamic Pari-Mutuel Market"
+.GE DPM "Dynamic Parimutuel Market"
 .GE HKJC "Hong Kong Jockey Club"
 .GE IP "In-play (after the off)"
 .GE PNL "Profit and Loss"
@@ -252,7 +253,8 @@ Betfair is a UK based company which operates a betting
 exchange service. A betting exchange is different from a
 typical bookmaker in that instead of the operator quoting
 odds prices or offering a tote service, it allows users to
-form bets with one another. Betfair does this using a CLOB,
+form bets with one another. Betfair does this using a CLOB
+(Central Limit Order Book),
 allowing users to either back (long) a bet or lay (short)
 one. Within the context of a horse race, this means that the
 win market (where bets are paid out only if the horse
@@ -341,7 +343,7 @@ murphy machine learning
 share that log-loss should be considered the standard cost
 function. Since log-loss easily supports binary outcomes, it
 can be applied in addition to Brier score as a measurement
-of accuracy for betting predictions.  Both Brier scores and
+of accuracy for betting predictions.Both Brier scores and
 log-loss will be useful in ranking the accuracy of markets.
 The primary difference between them is how harshly they rank
 confident incorrect guesses.
@@ -371,9 +373,6 @@ demonstrated that the betting returns of a strategy are not
 necessarily indicative of accuracy in a forecasting model,
 despite demonstrating profitability. Instead, there is a
 difference in a model forecasting accurately and profitably.
-Later in this report, I will explain and demonstrate some
-betting strategies, however they are only relevant to the
-efficiency of the market.
 .NHD "Use of Markets for Forecasting" 4
 .PP
 Current research shows prediction markets to provide
@@ -457,7 +456,7 @@ to hide their beliefs about the probability of a win. A
 continuous double auction
 (the primary mechanism of the Betfair Exchange) encourages
 price discovery over time but may still incentivise
-participants to to lie about their true valuation. Since the
+participants to lie about their true valuation. Since the
 price of a parimutuel market is not set until the market
 closes, there is no incentive for the market to track
 changes in information unlike a CDA.
@@ -508,7 +507,7 @@ Ali 1977
 observed over 20,000 races and found the favourite-longshot
 bias to be present. Ali creates a wealth utility function
 and determines that the average bettor values risk, thereby
-causing the discrepancy in prices.  Subsequent research has
+causing the discrepancy in prices.Subsequent research has
 also conjectured that bettors have a preference for risk at
 the racetrack. Kanto et al
 .[. (
@@ -577,7 +576,7 @@ A significant amount of research into the study of
 efficiency in racing markets is specifically focussed on
 parimutuel markets. This is the most common market for
 racing in the United States as well as Hong Kong.
-Comparitively little exists for markets using a CDA such as
+Comparatively little exists for markets using a CDA such as
 Betfair. This makes this report particularly interesting as
 a way to compare parimutuel markets with a CDA. It also
 means that this work has greater
@@ -627,7 +626,7 @@ the prices of daily doubles and their equivalently
 constructed parlays. In this analysis, Ali finds that the
 efficient market hypothesis could possibly hold for racing
 markets as the difference in price between the exotic bets
-and the parlays is not statistically significant.  In a
+and the parlays is not statistically significant.In a
 different study however, Asch and Quandt
 .[
 #
@@ -679,7 +678,7 @@ set about creating a technical betting system for place and
 show markets. Their strategy only used historical pricing
 data and so attempted to demonstrate a lack of
 .I "weak form"
-efficiency.  They argued that their system successfully
+efficiency.They argued that their system successfully
 exploited a market inefficiency and was able to generate a
 consistent profit. To do this, they derived estimated place
 and show probabilities from the implied win probabilities
@@ -708,11 +707,11 @@ sourced. This is especially important, as the data will be
 decomposed into smaller groups and so a large initial
 dataset means there will still be sufficient data points to
 analyse after this. The software needs to support flexible
-clasifications of races so that they can be quickly altered,
+classifications of races so that they can be quickly altered,
 adjusted, added or removed as required. This also makes the
 software easier to maintain and manage. With the data,
 metrics determining the accuracy of the market need to be
-calculated and strategies need to be backtested.
+calculated and strategies need to be back tested.
 .NHD "Data Selection" 2
 .PP
 I considered three different data sources for use in this
@@ -721,7 +720,8 @@ historical pricing data. This information is available at a
 free tier for all months the data is offered. The data is
 structured like exchange data, documenting price changes
 over time. For my purposes, this is beyond what I need as I
-am only interested in the BSP, and not the price evolution.
+am only interested in the BSP (Betfair Starting Price), and
+not the price evolution.
 .PP
 Data from the Hong Kong Jockey Club was also considered.
 After obtaining a dataset by scraping the publicly available
@@ -783,7 +783,7 @@ can generally be considered a measurement of market
 popularity and it would be reasonable to guess that higher
 popularity results in greater market accuracy and
 efficiency. Overround is a more betting specific metric,
-which measures the total probability of one event occuring
+which measures the total probability of one event occurring
 given the implied probabilities of the odds. Traditional
 bookmakers make money by offering odds with an overround
 greater than one as this means that a bet spread amongst all
@@ -793,21 +793,11 @@ markets are offering an overround of less than one, a profit
 can surely be made.
 .NHD "Accuracy Metrics" 2
 .PP
-I chose to use a combination of Brier scores and log-loss to
-determine accuracy. Both were chosen to be used due to their
-subtle differences. The greater punishment factor of
-log-loss really allows it to hone in on market confidence.
-If the market strongly favours one horse (and is correct) it
-will be punished much less. Brier score on the other hand is
-gentler. By comparing the two values, it can be seen whether
-the market can be considered accurate by more than one
-definition.
-.PP
-Skill scores are used as a way to compare relative accuracy
-measures. They enable a clear-cut method to identify whether
-one score can be considered better than another. The entire
-dataset as a whole can be used as a benchmark for the
-categories.
+A combination of different techniques are to be used. First
+of all, the existence or non-existence of the
+favourite-longshot bias must be determined. Secondly,
+accuracy test statistics are to be implemented to find the
+relative accuracy per grouping.
 .PP
 Methods for de-biasing odds are not used as these assume in
 the first place that the market is inaccurate. Instead I
@@ -820,7 +810,65 @@ Due to my choice of dataset, I do not have an opportunity to
 compare prices of exotic bets to parlays. This means that
 the most straightforward way to test for market efficiency
 is to subject the market to various betting strategies.
+Multiple different strategies are to be implemented and
+compared to try and find a market inefficiency.
+.NHD "Software Architecture" 2
 .PP
+The data will be broken up into three relational tables in
+order to increase operational efficiency. This is because
+the original dataset includes many duplicated sections of
+data, relevant only at specific levels of detail. The tables
+chosen are events, races and runners. Once the data is
+normalised this way, it becomes easy to perform operations
+on one section before joining it to another if it holds
+relevant details.
+.PP
+Test statistics and other details can be implemented fairly
+straightforwardly through Pandas. The key to this is making
+sure that categories can be easily interpreted and selected
+when calculating statistics.
+.PP
+Betting strategies are simplified as functions which simply
+choose which selections to bet on and how much. This means
+that details about profit and results can be handled in one
+separate instance for all different strategies. Betting
+strategies are easier to implement and alter as they do not
+have repeated code found within them.
+.NHD "Methodology"
+.PP
+This section summarises the methodology used to obtain
+results. Further detail is explored in the implementation
+section.
+.NHD "Data Acquisition" 2
+.PP
+Data is first acquired by downloading from the Betfair BSP
+price files directory. Once downloaded, they are then
+pre-processed into a more usable format. Win and place
+market files are stitched together, ensuring that no errors
+are caused in the process.
+.NHD "Accuracy" 2
+.PP
+Implied and observed win rates are calculated per BSP group.
+These allow the shape of the distribution to be seen
+visually, as it should be linear. Each BSP bucket has a 95%
+Wilson confidence interval determined to see if the results
+are statistically significant.
+.PP
+A calibration regression test is done using logistic
+regression. This helps numerically identify
+favourite-longshot bias or other bias that may be present in
+the sample.
+.PP
+Brier and log-loss scores are determined per race originally
+and then averaged for final results. Skill scores are
+determined using the scores determined from the dataset as a
+whole as the baseline. This makes it clear whether a
+grouping can be considered more or less accurate than the
+dataset as a whole. Random samples of groups are taken to
+identify the mean skill scores and confidence intervals.
+.NHD "Efficiency" 2
+.PP
+Three strategies are chosen to be compared.
 The first two strategies to be used are simple
 favourite-betting strategies. These strategies are chosen as
 they will very quickly identify one source of market
@@ -862,51 +910,6 @@ take into account how the bet will move the market. It is
 still however useful for identifying market inefficiency,
 but the profits reported may be exaggerated from what is
 truly possible.
-.NHD "Software Architecture" 2
-.PP
-The data will be broken up into three relational tables in
-order to increase operational efficiency. This is because
-the original dataset includes many duplicated sections of
-data, relevant only at specific levels of detail. The tables
-chosen are events, races and runners. Once the data is
-normalised this way, it becomes easy to perform operations
-on one section before joining it to another if it holds
-relevant details.
-.PP
-Test statistics and other details can be implemented fairly
-straightforwardly through Pandas. The key to this is making
-sure that categories can be easily interpreted and selected
-when calculating statistics.
-.PP
-Betting strategies are simplified as functions which simply
-choose which selections to bet on and how much. This means
-that details about profit and results can be handled in one
-separate instance for all different strategies. Betting
-strategies are easier to implement and alter as they do not
-have repeated code found within them.
-.NHD "Methodology"
-.PP
-This section summarises the methodology used to obtain
-results. Further detail is explored in the implementation
-section.
-.NHD "Data Acquisition" 2
-.PP
-Data is first acquired by downloading from the Betfair BSP
-price files directory. Once downloaded, they are then
-pre-processed into a more usable format. Win and place
-market files are stitched together, ensuring that no errors
-are caused in the process.
-.NHD "Accuracy" 2
-.PP
-Implied and observed win rates are calculated per BSP group.
-Brier and log-loss scores are determined per race originally
-and then averaged for final results. Skill scores are
-determined using the scores determined from the dataset as a
-whole as the baseline.
-.NHD "Efficiency" 2
-.PP
-The simple strategies are executed exactly as stated before.
-One bet is placed per every favorite horse of every race.
 .PP
 For the more advanced strategy, I chose to place a bet when
 it is determined that the expected edge is greater
@@ -915,11 +918,10 @@ is required and if the strategy is good, it should in theory
 result in a profit of 25% every time a bet is placed. The
 bets use a scaled Kelly criterion of 10% in order to avoid
 periods of boom and bust.
-.NHD "Validation" 2
 .PP
-Results are validated at different stages. During the data
-acquisition process, data with poorly formatted fields is
-rejected. Instances of duplicates are also removed.
+The strategies are tested against random samples of data in
+order to bootstrap their expected return and confidence
+intervals.
 .NHD "Implementation"
 .PP
 In this chapter, I will discuss the process for developing
@@ -943,16 +945,16 @@ data file is used to create more than one plot.
 .PP
 For version control, I used Git to track changes to the
 project over time. This included changes to the report
-itself as it it written in a text file format and then
+itself as it is written in a text file format and then
 processed to create a PDF. The repository is mirrored to
 GitHub, backing up my work and ensuring that a lost or
 stolen device could not cause me to lose my work.
 .NHD "Data Acquisition" 2
 .PP
 I produced a Python script to automatically download all of
-the files found in my dataset and process them to be used
+the files found in my dataset and processed them to be used
 within Pandas. The script saves the data to binary files for
-quick retrieval. It makes sure to not redownload files it
+quick retrieval. It makes sure to not re-download files it
 has already obtained so it can easily update the existing
 database. As well as this, it automatically slows down when
 rate limited to ensure that all files are downloaded. The
@@ -993,7 +995,6 @@ location;String;
 event_date;Datetime;
 .TE
 .TABLE "Events Structure"
-.KE
 .KS
 .TS
 tab(;) allbox;
@@ -1014,7 +1015,6 @@ T}
 event_id;Integer;Relational key.
 .TE
 .TABLE "Races Structure"
-.KE
 .KS
 .TS
 tab(;) allbox;
@@ -1042,7 +1042,6 @@ iptradedvol;Float32;Trade volume after the off
 race_id;Integer;Relational key.
 .TE
 .TABLE "Runners Structure"
-.KE
 .NHD "Pre-Processing" 2
 .PP
 I pre-processed my data to include some more fields that
@@ -1069,15 +1068,16 @@ to move the market.
 I then added fields for partial pre calculation of the Brier
 score and Log-Loss. This is particularly useful as it means
 that to determine the scores for a certain subset of races,
-they can simply be summated using the groups generated in
-the next section.
+they can simply be summed using the groups generated in
+the next section. Logit values are calculated to be
+used in the logistic regression.
 .PP
 Returns of a single unit bet are also pre-calculated. The
 return is simply 0 if the runner did not win or the BSP if
 it did. This is useful for the testing of betting strategies
 later. These returns can simply be scaled by bet amount to
 find the returns of different sized bets.
-.NHD "Categorisation" 3
+.NHD "Categorisation" 2
 .PP
 All categories are assigned as columns to the data so that
 they can be simply referred to by name later on. This makes
@@ -1097,7 +1097,7 @@ Similarly pivot_table enables this but with two different
 grouping functions. This is useful when groups need to
 perform calculations over a range of values, such as date or
 BSP.
-.NHD "Mean Returns by Implied Probability" 3
+.NHD "Mean Returns by Implied Probability" 2
 .PP
 Runners are grouped by BSP values and the mean win rate for
 each value is determined. BSP values given by the dataset
@@ -1106,17 +1106,24 @@ sizes available using the exchange and so they are first
 calibrated to align with the closest actual trade value
 possible. For each different BSP value, the mean win rate,
 the number of observations and the total trade volume are
-recorded. To make the graph clearer, a small rolling average
-of 5 ticks is applied. When graphed, the tick size is taken
+recorded. When graphed, the tick size is taken
 into account so that wider groups are not misrepresented as
-being more popular.
-.NHD "Test Statistics" 3
+being more popular. A Wilson confidence interval is
+calculated for statistical significance testing.
+.PP
+Logistical regression is performed on the entire dataset and
+per grouping to determine the slope and intercept of the
+plot. Confidence intervals for these values are also
+generated for comparison.
+.NHD "Test Statistics" 2
 .PP
 To calculate the Brier and log-loss scores, runners do not
 need to be grouped in two different ways. The scores can
 simply be calculated as an aggregate of the whole dataset
-and per category grouping.
-.NHD "Trading Strategies" 3
+and per category grouping. Each group has races sampled 1000 times
+to determine the expected scores as well as their 95%
+confidence intervals.
+.NHD "Trading Strategies" 2
 .PP
 Trading strategies are implemented using a system in which
 the strategy function receives a list of available runners
@@ -1141,7 +1148,7 @@ increase by writing the software in this way.
 .PP
 The simple strategies naturally have simple implementations.
 Every favourite is identified (this is actually
-precalculated to save time) and bet on. The size of the bet
+pre-calculated to save time) and bet on. The size of the bet
 is either a constant single unit, or for the case of the
 hedging strategy, the inverse of the BSP.
 .PP
@@ -1157,10 +1164,12 @@ probability of the horse winning. The Kelly growth criterion
 is then calculated to determine the percentage of current
 wealth to bet and the bet slip is produced.
 .PP
-After running the strategies, the profit and loss for every
-bet is available. These are aggregated per day and the
-Sharpe Ratio is applied. To convert to an annualised ratio,
-the result is multiplied by @sqrt 365@.
+For the purposes of analysis, bets generated by the
+strategies are sampled 1000 times. This enables
+determination of the expected returns of the strategies
+including confidence intervals. If this is not done, the
+results of strategies run over the data are simply
+individual results and are not comparable.
 .NHD "Results, Analysis & Evaluation"
 .NHD "Initial Observations" 2
 .PP
@@ -1220,7 +1229,7 @@ For both total pre-play trade volume and overround, the
 volume of the market tends to shift towards being negatively
 skew as they increase. This trend is particularly pronounced
 for pre-play trade volume. As total trade volume increases,
-trade tends to center around horses with a greater chance of
+trade tends to centre around horses with a greater chance of
 winning. It is so extreme that in the highest bracket of
 volume, well over 50% of trades are being made on selections
 with an implied probability of winning of over 50%. It could
@@ -1259,22 +1268,72 @@ I am expecting to find the favourite-longshot bias within my
 sample.
 .FIGS all-fl 5i "Win Rate Compared to BSP For All Races"
 .PP
-When observing the entire dataset, it is clear that the
-favourite-longshot bias is not present. The mean win rate
-closely tracks the expected win rate at all implied
-probabilities. If
-the favourite-longshot bias was present, the mean win rate would
+When plotting expected win rate against true win rate, it
+appears as though the favourite-longshot bias is not present
+within the entire sample. Figure
+.FN
+shows this using Wilson confidence intervals. 
+If the favourite-longshot bias was present, the mean win rate would
 appear greater than the expected win rate for low implied
 probabilities and lesser than for high implied
-probabilities.  Variance within the higher expected win
-rates can be
-largely explained by them making up a representatively small
-part of the sample.
-.FIGS groups-fl-mean 8i "Win Rate Compared to Implied Probability by Category"
+probabilities. This would result in an ``S'' shaped plot.
+Almost every confidence interval contains the expected win
+rate and so this is the first indication the
+favourite-longshot bias is not present.
 .PP
-Similarly, for all categories it appears there is no sign of
-the favourite-longshot bias. They all have greater variance,
-but this is simply due to a smaller sample size.
+A logit regression is employed to determine sample
+calibration. If the sample is perfectly calibrated, then the
+slope should be one and the intercept zero. The results of
+the regression are in Table \n[(\n[tab]+1)].
+.KS
+.TS
+tab(;) allbox;
+lb lb lb lb
+l n r l.
+Parameter;Estimate;95% Confidence Interval;Interpretation
+Intercept;-0.0064;(-0.0169, 0.0042);No overall bias
+Slope;0.9967;(0.9913, 1.0022);No probability distortion
+.TE
+.TABLE "Logistic Regression of Implied Probabilities Against Win Rate"
+.PP
+The logistic calibration model finds no evidence of
+systematic miscalibration within the sample. Both the
+intercept and slope values are not significantly different
+from what should be expected. This indicates that the market
+values accurately reflect the outcomes and so there is no
+favourite-longshot bias. The logistic regression is
+calculated for every grouping of races.
+.FIGS groups-logit 8i "Error of Expected Values of Logistic Regression"
+.PP
+Almost all groups appear to exhibit no significant bias or
+probability distortion. There are a few exceptions. Most of
+the exceptions are minor, being just outside of the 95%
+confidence interval. These are race number 2, hour 17 (5PM),
+and the extreme trade volume values. All of these have one
+or both of the slope and intercept significantly lower than
+their expected values. A slope value less than one is what
+would be expected of a sample featuring the
+favourite-longshot bias as this shows an undervaluing of
+favourites and an overvaluing of longshots. An intercept
+less than zero demonstrates systematic overestimation of
+winning probabilities. These values could suggest that the
+favourite-longshot bias is present, but are not conclusive.
+.PP
+Bigger variation is found in the highest overround group, 5
+furlongs and the NHF (National Hunt Flat) race type. The
+overround group features a significantly lower intercept and
+the NHF and 5f groups have a significantly lower intercept
+and slope. Because the slope is not significantly lower than
+1 for the highest overound group, this is not consistent
+with the favourite-longshot bias. Instead, this is an
+overpricing of all horses.The NHF and 5f groups are
+consistent with general overpricing and what would be
+expected of the favourite-longshot bias.
+.PP
+These few counter examples are consistent with what should
+be expected for false positives from this sample. With a 95%
+confidence rate and 76 different groupings being identified,
+3.8 false positives are expected.
 .PP
 This is a stark contrast from most
 previous research, with the only other example I know of a
@@ -1302,7 +1361,7 @@ per race. This is because each runner is not an isolated
 event, and is instead packaged within a race. Organising by
 race prevents extra external factors from affecting the
 results. For the data set as a whole, the Brier score is
-determined to be 0.0951 and the log-loss is 0.3167. Skill
+determined to be 0.0946 and the log-loss is 0.3157. Skill
 scores can be used to show that both of these metrics are
 better than randomly guessing the likelihood of a horse
 winning a race.
@@ -1334,13 +1393,15 @@ accounting for selections within races.
 .PP
 Figure
 .FN
+shows the Brier and log-loss skill scores with 95%
+confidence intervals. It
 demonstrates that both skill scores are largely
 similar.
 There are a few occasions where the scores conflict
 and one is negative while the other positive. In all
 instances of this, the skill scores are both very close to
 zero. The difference will be due to slight differences in
-the the distribution of skill scores as seen in Figure 
+the distribution of skill scores as seen in Figure 
 .FN -2 .
 .PP
 Some skill scores appear to be correlated with the size of
@@ -1355,7 +1416,7 @@ categories shows that volume can not necessarily be used as
 an indicator of market accuracy.
 .PP
 Other categories appear to have skill scores unrelated to
-the relative volume or race count.  The prime example is
+the relative volume or race count.The prime example is
 number of runners; skill scores increase as the number of
 runners does. This behaviour is to be expected because of
 our test statistics. A greater number of selections in a
@@ -1370,7 +1431,7 @@ having low or negative skill score before sharply rising at
 the high end of the categories. Overround is a
 representation of the total probability of prices given in
 the market. For an overround of 1, all prices add up to a
-total probability of one event occuring being 100%.
+total probability of one event occurring being 100%.
 Odds offered by traditional bookmakers typically have an
 overround much greater than one, this is the margin that
 they make. Because of this, I would have expected the
@@ -1403,47 +1464,29 @@ used by Hausch et al
 #
 hausch 1981
 .]).
-.FIGS "all-strats" 8i "Results of Betting Strategies Applied to All Races"
+.FIGS "all-strats" 5i "Results of Betting Strategies Applied to All Races"
 .PP
 The results of these strategies when applied to all races
 can be seen in Figure
 .FN +0 .
-When hedging, the resulting profit stays exactly at zero.
+Both the favourite betting strategy and the favourite
+hedging strategy do not have mean returns statistically
+significant from zero.
 This is to be expected in an efficient market as the
-expected value of the profit of any bet hedged this way
-should be zero. The favourite betting strategy at first
-glance appears to actually provide a profitable system.
-However, the profit here is relatively small
-compared to the number of wagers. Given that over 170,000
-bets have been placed, the final result is a return of less
-than 1%. While technically a profitable strategy, it is
-essentially worthless due to the low returns. A return this
-low is not substantial enough to claim a lack of efficiency
-in the market.
+expected value of the profit of a bet
+should be zero.
 .PP
-The more advanced strategy looks promising from the outset.
-Over the time period, it is able to generate a total profit
-over over 1000 times the initial wealth of the bettor. This
-of course is not representative of the results that would
-truly be earned, as a bettor will not be able to place large
-bets at favourable prices without moving the market to an
-unfavourable position. The Sharpe ratio
-.[
-sharpe 1994
-.]
-can be applied to establish a metric of strategy
-performance. For the entire dataset, the annualised Sharpe
-ratio of the more advanced strategy is 0.9679. This is
-generally considered to be a somewhat weak score. Investors
-typically believe a Sharpe ratio greater than 1 to be
-adequate and greater than 2 to be strong. The reason the
-score is so low is because the variance of the returns is
-too great, and so there is a lot of risk in the investment.
-While it seems to perform well in the test here, it is
-likely to have significant downward periods (as exhibited in
-Figure
-.FN +0 )
-and so is unappealing.
+The more advanced strategy appears to generate a consistent
+profit per bet. Profit is greater than zero within the 95%
+confidence interval. This demonstrates a theoretical lack of
+efficiency in the market. It is worth remembering however
+that this strategy does not take into account price
+movements caused by the placement of large bets. This was an
+important feature of the original strategy that I have not
+been able to replicate for this task. If the market behaved
+as if there was infinite liquidity at quoted BSP prices,
+this strategy would be effective at generating a consistent
+profit.
 .FIGS "groups-fav-bet" 8i "Favourite Betting Strategy by Category"
 .PP
 When applying the two basic strategies to the different
@@ -1452,47 +1495,25 @@ well or poorly. In Figure
 .FN
 the results for the favourite betting strategy are shown.
 Unlike the accuracy test statistics, no trends appear to
-emerge. From this strategy, no particular conclusions can be
-drawn.
+emerge. None of the groupings have returns significantly
+different from zero.
 .FIGS "groups-hedge-bet" 8i "Favourite Hedging Strategy by Category"
 .PP
 The favourite hedging strategy is the same as the favourite
 betting strategy in that no patterns can be found in the
-results.
+results. The returns are also not significantly different
+from zero.
 .FIGS "groups-harville-bet" 8i "Advanced Betting Strategy by Category"
 .PP
-The advanced betting strategy has a wide variation in
-successfulness. Figure
-.FN
-shows the cumulative returns as a multiple of initial
-wealth. On first inspection, the two most successful
-implementations of this strategy are for races at 14:00 and
-races with a total trade volume between £508,813
-and £580,970. The least successful was for NHF (National
-Hunt Flat) races. Again, there does not appear to be much of
-a link between the different groups and the performance of
-strategy. The immediate performance of the strategy here is
-not sufficient to deem any particular grouping of races to
-have an inefficient market.
-.FIGS "groups-sharpe" 8i "Sharpe Ratio by Category for Advanced Strategy"
+Unlike the results for the entire dataset, no grouping has
+a return significantly different from zero with the advanced
+strategy. This is likely explained by the groupings being
+much smaller than the whole sample, and so the confidence
+intervals are wider.
 .PP
-Sharpe ratios as displayed in Figure
-.FN
-help to finalise the picture. It is clear that there
-is no correlation between the groupings and the performance
-of the strategy. This is true for all categories except for
-race number, which appears to follow a similar trend as the
-results for accuracy (see Figure
-.FN -5 )
-albeit somewhat exaggerated. While some of the Sharpe ratios
-are high, I am still reluctant to identify any group as
-being inefficient. Even with high Sharpe ratios, some groups
-fail to deliver impressive returns. Races with 5 horses and
-Novice Handicap Chases have some of the highest Sharpe
-ratios and yet the actual profit derived from these groups
-is very limited. Given the variance and lack of
-correlation, I think it is more likely that these results
-have come about due to random chance.
+It cannot be said that for any of the
+different groupings an inefficiency has been found, though
+it could potentially be said of the entire dataset.
 .NHD "Legal, Social, Ethical & Professional Issues"
 .NHD "Intellectual Property" 2
 .PP
@@ -1540,7 +1561,7 @@ considered good as it pushes the market towards greater
 accuracy. In many scenarios however, this information is
 confidential or sensitive. A U.S. soldier was charged with
 using classified information about the capture of
-Nicol\['a]s Maduro in Venzuela
+Nicol\['a]s Maduro in Venezuela
 .[
 soldier prediction market
 .]
@@ -1628,7 +1649,7 @@ ban the events from taking place at all. Any changes imposed
 may have significant impacts on the markets, as models need
 to be recalibrated to account for the different environment.
 Additionally, the availability of the market could be
-completely jeopordised if events are banned.
+completely jeopardised if events are banned.
 .NHD Conclusion
 .PP
 There has been a surge in popularity of prediction markets
@@ -1647,7 +1668,7 @@ accuracy and efficiency in those markets. Novel research is
 contributed by first of all looking at a CDA market instead
 of a parimutuel market (which has typically been the focus
 of prior research) and secondly by decomposing the
-market into distinct sub-groups to observe.  Beyond simply
+market into distinct sub-groups to observe.Beyond simply
 determining whether the Betfair exchange can be considered
 accurate or efficient, I have attempted to find the relative
 contributions of different groups of races to this accuracy
@@ -1685,12 +1706,13 @@ adapted from Hausch et al
 hausch 1981
 .])
 which attempts to derive odds for a horse placing from its
-win price. While the strategies appeared to be somewhat
-successful when used across all races, it was determined
-that they did not demonstrate a lack of efficiency within
-the market. Similarly, when applied to the different
-categorisations, there was no conclusive evidence of
-categorisation affecting the efficiency of the market.
+win price. In almost all circumstances, the strategies were
+not able to produce returns significantly different from
+zero. The one exception is when the advanced strategy was
+applied to the dataset as a whole. This potentially
+indicates some level of market inefficiency, but the
+strategy is not robust enough to confidently claim that for
+now.
 .NHD "Future Work" 2
 .PP
 To further the discovery of market accuracy, it would be

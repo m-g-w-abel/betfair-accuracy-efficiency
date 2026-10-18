@@ -3,7 +3,7 @@ database bib
 move-punctuation
 no-label-in-reference
 accumulate
-sort A
+sort "A"
 join-authors " & " ", "
 label "(A.n|Q) ', ' (D.y|D)"
 short-label "(D.y|D)"
@@ -30,7 +30,7 @@ delim @@
 .nr fig 0 1
 .de FIGS
 . KS
-. PSPIC ../output/plots/\\$1.ps \\$2
+. PSPIC ../results/figures/\\$1.ps \\$2
 . DS C
 . B "Figure \\n+[fig]: \\$3"
 . DE
@@ -50,9 +50,14 @@ Figure \\n[fig]: \\$3\a\\n%
 . CD
 . B "Table \\n+[tab]: \\$1"
 . DE
+. KE
 . da TABLIST
 . ta \n(.luR
 Table \\n[tab]: \\$1\a\\n%
 . br
 . da
+..
+.de TN
+. nr *temp \\n[tab]\\$1
+\\n[*temp]\\$2
 ..
